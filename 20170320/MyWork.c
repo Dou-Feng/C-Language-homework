@@ -27,5 +27,5 @@ int main(void) {
     short newint;//newint undeclared
     //newint = (p&0xff00)|(k&0xff00)<<8;  /*the statement is wrong*/
       newint = (p&0xff00)|(k>>8)&0xff;
-    printf("newint =%hx\n\n",newint);   //  应该使用hx
+    printf("newint =%hx\n\n",newint);   //  use %hx
 }
