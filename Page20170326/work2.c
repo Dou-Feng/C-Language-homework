@@ -1,11 +1,10 @@
 #include "stdio.h"
 
-void main() {
+int main() {
     int t;
     float n1, n2;
     char c;
-    while (scanf("%d %f %f %c", &t, &n1, &n2, &c) != EOF) {
-        getchar();
+    while (scanf("%d %f %f %c", &t, &n1, &n2, &c) == 4) {
         if(t == 1) {
             switch (c) {
                 case '+':
@@ -62,4 +61,5 @@ void main() {
         }
         printf("\n");
     }
+    return 0;
 }
