@@ -1,5 +1,0 @@
-*.exe
-*.docx
-*.doc
-*.png
-*.xlsx
