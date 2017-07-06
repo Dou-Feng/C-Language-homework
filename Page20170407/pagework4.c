@@ -1,3 +1,4 @@
+//字符串长度
 #include <malloc.h>
 #include "stdio.h"
 

@@ -1,3 +1,4 @@
+//生成冰雹数
 #include "stdio.h"
 
 void hailstone(int n);

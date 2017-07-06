@@ -1,3 +1,4 @@
+//得到一个整数中的一个位数
 #include "stdio.h"
 
 int getNumber(unsigned long n, int k);
@@ -17,8 +18,7 @@ int getNumber(unsigned long n, int k)
 {
     if (k > getLength(n)) {
         return -1;
-    }
-    else {
+    } else {
         for (int i = 0; i < k - 1; ++i) {
             n /= 10;
         }

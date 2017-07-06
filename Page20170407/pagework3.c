@@ -1,3 +1,4 @@
+//游戏：掷骰子
 #include "stdio.h"
 
 int getSum(int n) {
