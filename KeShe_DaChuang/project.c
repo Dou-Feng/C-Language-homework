@@ -181,6 +181,12 @@ void findProject(struct project *head) {
             scanf("%s", temp_productName);
             findProCombine(collection, head, temp_fund[0], temp_fund[1],
                 temp_proName, temp_judgement, temp_productForm, temp_productName);
+            if (collection[0]) {
+                printf("查找结果是：\n");
+                printProCollection(collection);
+            } else {
+                printf("没有相匹配的结果\n");
+            }
             break;
         default:
             break;
@@ -277,12 +283,12 @@ void deleteProject(struct project *head) {
     scanf("%d", &way);
     switch (way) {
         case 1:
-            printf("请输入年度编号\n");
+            printf("请输入项目名称：");
             scanf("%s", CNoTemp);
             findProCollectionByProName(collection, head, CNoTemp);
             break;
         case 2:
-            printf("请输入经费\n");
+            printf("请输入经费：");
             scanf("%f", &fundTemp);
             findProCollectionByMoney(collection, head, fundTemp, fundTemp);
             break;
@@ -319,7 +325,7 @@ void modifyProject(struct project *head) {
     findProCollectionByProName(collection, head, temp_proName);
     for (int i = 0; collection[i]; ++i) {
         /*查找需要修改的计划表*/
-        printf("当前操作的计划表为：\n");
+        printf("当前操作的项目为：\n");
         printProject(collection[i]);
         modifyProDetail(collection[i]);
     }
@@ -433,10 +439,10 @@ void modifyProDetail(struct project *p) {
 成果名称*/
 void printProject(struct project *p) {
     FILE *dataOutput = fopen("H:/data/Output_project.txt", "w+");
-    fprintf(dataOutput, "%-10s%-10s%-8f%-10d%-10s%-10s%-5s%-8s%-12s%-8s%16s\n", p->CNo, p->proName, p->money, p->member,
+    fprintf(dataOutput, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-8s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
             p->startTime, p->finishTime, p->judgement, p->leadMan,
             p->leadPhoneNum, p->productForm, p->productName);
-    fprintf(stdout, "%-10s%-10s%-8f%-10d%-10s%-10s%-5s%-8s%-12s%-8s%16s\n", p->CNo, p->proName, p->money, p->member,
+    fprintf(stdout, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-8s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
             p->startTime, p->finishTime, p->judgement, p->leadMan,
             p->leadPhoneNum, p->productForm, p->productName);
     fclose(dataOutput);
@@ -449,16 +455,16 @@ void printProTable(struct project *head) {
     char title[11][20] = {"项目编号", "项目名称", "经费数", "参与人数",
                           "立项时间", "结题时间", "完成评价", "负责人",
                           "负责人电话", "成果形式", "成果名称"};
-    fprintf(dataOutput, "%-10s%-10s%-8s%-10s%-10s%-10s%-5s%-8s%-12s%-8s%16s\n", title[0], title[1], title[2],
+    fprintf(dataOutput, "%-10s%-40s%-10s%-10s%-10s%-10s%-10s%-8s%-15s%-10s%-16s\n", title[0], title[1], title[2],
             title[3], title[4], title[5], title[6], title[7], title[8],title[9], title[10]);
-    fprintf(stdout, "%-10s%-10s%-8s%-10s%-10s%-10s%-5s%-8s%-12s%-8s%16s\n", title[0], title[1], title[2],
+    fprintf(stdout, "%-10s%-40s%-10s%-10s%-10s%-10s%-10s%-8s%-15s%-10s%-16s\n", title[0], title[1], title[2],
             title[3], title[4], title[5], title[6], title[7], title[8],title[9], title[10]);
 
     while (p) {
-        fprintf(dataOutput, "%-10s%-10s%-8f%-10d%-10s%-10s%-5s%-8s%-12s%-8s%16s\n", p->CNo, p->proName, p->money, p->member,
+        fprintf(dataOutput, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-10s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
                 p->startTime, p->finishTime, p->judgement, p->leadMan,
                 p->leadPhoneNum, p->productForm, p->productName);
-        fprintf(stdout, "%-10s%-10s%-8f%-10d%-10s%-10s%-5s%-8s%-12s%-8s%16s\n", p->CNo, p->proName, p->money, p->member,
+        fprintf(stdout, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-10s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
                 p->startTime, p->finishTime, p->judgement, p->leadMan,
                 p->leadPhoneNum, p->productForm, p->productName);
         p = p->next;

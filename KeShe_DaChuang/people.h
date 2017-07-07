@@ -19,6 +19,7 @@ struct people {
     char phoneNum[12];
     int rank;
     struct people *next;
+    struct people *prior;
 };
 
 struct people *createPeople();

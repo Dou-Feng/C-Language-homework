@@ -8,9 +8,10 @@ CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../schedule.h
 
 CMakeFiles/KeShe_DaChuang.dir/people.c.obj: ../people.c
 CMakeFiles/KeShe_DaChuang.dir/people.c.obj: ../people.h
-CMakeFiles/KeShe_DaChuang.dir/people.c.obj: ../project.h
 
+CMakeFiles/KeShe_DaChuang.dir/project.c.obj: ../people.h
 CMakeFiles/KeShe_DaChuang.dir/project.c.obj: ../project.c
+CMakeFiles/KeShe_DaChuang.dir/project.c.obj: ../project.h
 
 CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj: ../people.h
 CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj: ../project.h
