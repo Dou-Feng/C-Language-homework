@@ -9,7 +9,7 @@
 #define KESHE_DACHUANG_SCHEDULE_H
 
 #endif //KESHE_DACHUANG_SCHEDULE_H
-/*åŒå‘é“¾è¡¨*/
+/*Ë«ÏòÁ´±í*/
 struct schedule {
     char CSNo[10];
     float fund;
@@ -25,51 +25,52 @@ struct schedule {
     struct schedule *prior;
 };
 
-/*åˆ›å»ºé“¾è¡¨*/
+/*´´½¨Á´±í*/
 struct schedule* createSchedule();
 
 
-/*åœ¨é“¾è¡¨å°¾æ·»åŠ ä¸€ç»„æ•°æ®*/
+/*ÔÚÁ´±íÎ²Ìí¼ÓÒ»×éÊı¾İ*/
 void addSchedule(struct schedule *, FILE *data);
 
-/*é€šè¿‡å¹´åº¦ç¼–å·æŸ¥æ‰¾å‡ºæ‰€æœ‰çš„ä¸å…³é”®è¯æœ‰å…³çš„è®¡åˆ’è¡¨*/
-void findSchCollectionByCSNo(struct schedule **,struct schedule *head, char *keyword);
+/*Í¨¹ıÄê¶È±àºÅ²éÕÒ³öËùÓĞµÄÓë¹Ø¼ü´ÊÓĞ¹ØµÄ¼Æ»®±í*/
+void findSchCollectionByCSNo(struct schedule **, struct schedule *head, char *keyword);
 
-/*æŸ¥æ‰¾æ“ä½œ*/
+/*²éÕÒ²Ù×÷*/
 void findSchedule(struct schedule *);
 
-/*é€šè¿‡ç»è´¹æŸ¥æ‰¾ï¼Œè¿”å›å€¼ä¸ºæŸ¥æ‰¾åˆ°çš„èŠ‚ç‚¹çš„æŒ‡é’ˆ*/
-void findSchCollectionByFundMax(struct schedule **collection,struct schedule *head,float max,float min);
+/*Í¨¹ı¾­·Ñ²éÕÒ£¬·µ»ØÖµÎª²éÕÒµ½µÄ½ÚµãµÄÖ¸Õë*/
+void findSchCollectionByFundMax(struct schedule **collection, struct schedule *head,float max,float min);
 
-/*é€šè¿‡å®é™…æ”¯æŒé¡¹ç›®æŸ¥æ‰¾å‡ºæ‰€æœ‰çš„è®¡åˆ’è¡¨*/
+/*Í¨¹ıÊµ¼ÊÖ§³ÖÏîÄ¿²éÕÒ³öËùÓĞµÄ¼Æ»®±í*/
 void findSchCollectionBySupMax(struct schedule **collection, struct schedule *head, int max,int min);
 
-/*ç»„åˆæŸ¥è¯¢*/
+/*×éºÏ²éÑ¯*/
 void findSchCollectionCombine(struct schedule **collection, struct schedule *head, char *, float, float,
                               int ,int);
 
-/*åˆ é™¤ä¸€ä¸ªèŠ‚ç‚¹*/
+/*É¾³ıÒ»¸ö½Úµã*/
 void deleteSchedule(struct schedule *);
 
 
-/*ä¿®æ”¹æ“ä½œ*/
+/*ĞŞ¸Ä²Ù×÷*/
 void modifySchedule(struct schedule *);
 
-/*ä¿®æ”¹å…·ä½“çš„èŠ‚ç‚¹çš„å†…å®¹*/
+/*ĞŞ¸Ä¾ßÌåµÄ½ÚµãµÄÄÚÈİ*/
 void modifyDetailSchedule(struct schedule *);
 
 
-/*æ‰“å°å•ä¸ªèŠ‚ç‚¹çš„å…·ä½“å†…å®¹*/
+/*´òÓ¡µ¥¸ö½ÚµãµÄ¾ßÌåÄÚÈİ*/
 void printSchedule(struct schedule *);
 
-/*æ‰“å°è®¡åˆ’è¡¨æ ¼*/
+/*´òÓ¡¼Æ»®±í¸ñ*/
 void printSchTable(struct schedule *);
 
-/*æ‰“å°å®¹å™¨é‡Œçš„è®¡åˆ’è¡¨*/
+/*´òÓ¡ÈİÆ÷ÀïµÄ¼Æ»®±í*/
 void printSchCollection(struct schedule **);
 
 
-/*ç”¨äºæ”¹å˜é“¾è¡¨çš„æŒ‡é’ˆæŒ‡å‘ï¼Œåˆ°è¾¾äº¤æ¢å…ƒç´ çš„ä½œç”¨*/
-void chgLocation(struct schedule *head, int chg1, int chg2);
+/*ÓÃÓÚ¸Ä±äÁ´±íµÄÖ¸ÕëÖ¸Ïò£¬µ½´ï½»»»ÔªËØµÄ×÷ÓÃ*/
+void exchangeSchedule(struct schedule *head, int chg1, int chg2);
 
+/*°´ÕÕ×ÖµäĞò°ÑÄê¶È±àºÅ½øĞĞÅÅĞò*/
 void sortSchedule(struct schedule *head);

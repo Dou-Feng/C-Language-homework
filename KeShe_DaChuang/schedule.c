@@ -41,7 +41,8 @@ void addSchedule(struct schedule *head, FILE *data) {
     /*方式选择*/
     int way = 0;
     printf("请选择输入数据的方式\n"
-                   "1.从文件输入\n2.从键盘输入\n");
+                   "1.从文件输入\n"
+                   "2.从键盘输入\n");
     scanf("%d", &way);
     switch (way) {
         case 1:
@@ -149,8 +150,12 @@ void findSchedule(struct schedule *head) {
             printf("请输入年度编号：");
             scanf("%s", temp_CSNo);
             findSchCollectionByCSNo(collection, head, temp_CSNo);
-            printf("查找结果：\n");
-            printSchCollection(collection);
+            if (collection[0]) {
+                printf("查找结果是：\n");
+                printSchCollection(collection);
+            } else {
+                printf("没有相匹配的结果\n");
+            }
             break;
         case 2:
             printf("请输入资金的最小值和最大值\n");
@@ -401,19 +406,17 @@ void modifyDetailSchedule(struct schedule *p) {
             scanf("%d", &tempNum);
             p->excellentProNum = tempNum;
             break;
-            /*case 10:
-                *//*项目具体修改*//*
+            case 10:
+                //*项目具体修改*//*
             printProTable(p->projectHead);
-            printf("请输入你要修改项目的年度编号：\n");
-            scanf("%s", tempString);
-            modifyProject(findProByCNo(p->projectHead, tempString));*/
+            modifyProject(p->projectHead);
         default:
             break;
     }
 }
 
 
-void chgLocation(struct schedule *head, int chg1, int chg2) {
+void exchangeSchedule(struct schedule *head, int chg1, int chg2) {
     struct schedule *prior1 = head, *prior2 = head, *aftarget1, *aftarget2, *target1, *target2;
     for (int i = 0; i < chg1 - 1; ++i) {
         if (!prior1)
@@ -485,7 +488,7 @@ void sortSchedule(struct schedule *head) {
                 strcpy(temp, temp_CSNo[i]);
                 strcpy(temp_CSNo[i], temp_CSNo[j]);
                 strcpy(temp_CSNo[j], temp);
-                chgLocation(head, i + 1, j + 1);
+                exchangeSchedule(head, i + 1, j + 1);
             }
         }
     }
