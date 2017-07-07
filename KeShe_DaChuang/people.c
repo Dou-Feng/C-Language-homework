@@ -13,3 +13,4 @@ struct project *createProject() {
     tail->next = NULL;
     return head;
 }
+

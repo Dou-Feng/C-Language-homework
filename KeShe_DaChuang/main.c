@@ -20,8 +20,10 @@ int main() {
                 break;
             case 3:
                 modifySchedule(head);
+                break;
             case 4:
                 findSchedule(head);
+                break;
             default:
                 break;
         }

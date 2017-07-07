@@ -209,7 +209,7 @@ void findSchedule(struct schedule *head) {
 
 
 void findSchCollectionByCSNo(struct schedule **collection, struct schedule *head, char *keyword) {
-    struct schedule *p = head;
+    struct schedule *p = head->next;
     int index = 0;
     while (p) {
         if (strstr(p->CSNo, keyword)) {
@@ -319,11 +319,16 @@ void modifySchedule(struct schedule *head) {
     struct schedule *collection[100];
     char temp_CSNo[10];
     printf("请输入你要修改的计划表的年度编号：\n");
+    scanf("%s", temp_CSNo);
     findSchCollectionByCSNo(collection, head, temp_CSNo);
     for (int i = 0; collection[i]; ++i) {
         /*查找需要修改的计划表*/
+        printf("当前操作的计划表为：\n");
+        printSchedule(collection[i]);
         modifyDetailSchedule(collection[i]);
     }
+    /*修改完之后应该排序*/
+    sortSchedule(head);
 }
 
 void modifyDetailSchedule(struct schedule *p) {

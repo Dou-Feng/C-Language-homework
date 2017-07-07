@@ -23,3 +23,6 @@ struct people {
 
 struct people *createPeople();
 
+void addPeople(struct people *);
+
+void findPeople(struct people *);
