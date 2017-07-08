@@ -2,6 +2,8 @@
 // Created by Famine on 2017/7/1.
 //
 #include <string.h>
+#include <stdio.h>
+
 #ifndef KESHE_DACHUANG_PEOPLE_H
 #define KESHE_DACHUANG_PEOPLE_H
 
@@ -11,7 +13,7 @@ struct people {
     char SNo[12];
     char name[20];
     int age;
-    char grade;
+    char grade[10];
     char collegeAndMajor[30];
     char class[10];
     char speciality[20];
@@ -24,6 +26,36 @@ struct people {
 
 struct people *createPeople();
 
-void addPeople(struct people *);
+void addPeople(struct people *, FILE *);
+
+
 
 void findPeople(struct people *);
+
+void findPeopleByName(struct people **collection, struct people *head, char *keyword);
+
+void findPeopleBySpe(struct people **, struct people *, char *);
+
+
+void deletePeople(struct people *);
+
+
+
+
+void sortPeople(struct people *);
+
+void exchangePeople(struct people *, int, int);
+
+
+
+
+void modifyPeople(struct people *);
+
+void modifyPeopleDetail(struct people *p);
+
+
+void printPeoCollection(struct people **);
+
+void printPeople(struct people *);
+
+void printPeoTable(struct people *);

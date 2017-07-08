@@ -366,7 +366,7 @@ void modifyProDetail(struct project *p) {
         case 2:
             printf("请输入新的项目名称：\n");
             scanf("%s", tempString);
-            p->proName;
+            strcpy(p->proName, tempString);
             break;
         case 3:
             printf("请输入新的经费数：\n");
@@ -413,12 +413,9 @@ void modifyProDetail(struct project *p) {
             scanf("%s", tempString);
             strcpy(p->productName, tempString);
             break;
-            /*case 12:
-                *//*人员具体修改*//*
-            printProTable(p->projectHead);
-            printf("请输入你要修改项目的年度编号：\n");
-            scanf("%s", tempString);
-            modifyProject(findProByCNo(p->projectHead, tempString));*/
+            case 12:
+            printPeoTable(p->peopleHead);
+            modifyPeople(p->peopleHead);
         default:
             break;
     }
@@ -449,7 +446,7 @@ void printProject(struct project *p) {
 }
 
 void printProTable(struct project *head) {
-/*第一个头节点不存放数据*/
+    /*第一个头节点不存放数据*/
     struct project *p = head->next;
     FILE *dataOutput = fopen("H:/data/Output_project.txt", "w+");
     char title[11][20] = {"项目编号", "项目名称", "经费数", "参与人数",
