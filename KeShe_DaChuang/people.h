@@ -59,3 +59,5 @@ void printPeoCollection(struct people **);
 void printPeople(struct people *);
 
 void printPeoTable(struct people *);
+
+void printPeoByRank(struct people *);

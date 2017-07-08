@@ -484,7 +484,7 @@ void sortSchedule(struct schedule *head) {
     char temp[16];
     for (int i = 0; i < length; ++i) {
         for (int j = i; j < length; ++j) {
-            if (strcmp(temp_CSNo[i], temp_CSNo[j]) < 0) {
+            if (strcmp(temp_CSNo[i], temp_CSNo[j]) > 0) {
                 strcpy(temp, temp_CSNo[i]);
                 strcpy(temp_CSNo[i], temp_CSNo[j]);
                 strcpy(temp_CSNo[j], temp);

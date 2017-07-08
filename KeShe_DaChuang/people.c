@@ -190,8 +190,8 @@ void findPeopleByName(struct people **collection, struct people *head, char *key
     while (p) {
         if (strstr(p->name, keyword)) {
             collection[index++] = p;
-            p = p->next;
         }
+        p = p->next;
         collection[index] = NULL;
     }
 }
@@ -202,8 +202,8 @@ void findPeopleBySpe(struct people **collection, struct people *head, char *keyw
     while (p) {
         if (strstr(p->speciality, keyword)) {
             collection[index++] = p;
-            p = p->next;
         }
+        p = p->next;
         collection[index] = NULL;
     }
 }
@@ -330,6 +330,11 @@ void modifyPeopleDetail(struct people *p) {
             strcpy(p->undertakeTask, tempString);
             break;
         case 9:
+            printf("请输入新的联系电话：\n");
+            scanf("%s", tempString);
+            strcpy(p->phoneNum, tempString);
+            break;
+        case 10:
             printf("请输入新的项目成员排名：\n");
             scanf("%d", &tempNum);
             p->rank = tempNum;
@@ -408,7 +413,7 @@ void sortPeople(struct people *head) {
     char temp[16];
     for (int i = 0; i < length; ++i) {
         for (int j = i; j < length; ++j) {
-            if (strcmp(temp_SNo[i], temp_SNo[j]) < 0) {
+            if (strcmp(temp_SNo[i], temp_SNo[j]) > 0) {
                 strcpy(temp, temp_SNo[i]);
                 strcpy(temp_SNo[i], temp_SNo[j]);
                 strcpy(temp_SNo[j], temp);
@@ -431,9 +436,9 @@ void sortPeople(struct people *head) {
 */
 void printPeople(struct people *p) {
     FILE *dataOutput = fopen("H:/data/Output_people.txt", "w+");
-    fprintf(dataOutput, "%-14s%-10s%-8d%-10s%-20s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
+    fprintf(dataOutput, "%-14s%-10s%-8d%-10s%-30s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
             p->class, p->speciality, p->undertakeTask, p->phoneNum, p->rank);
-    fprintf(stdout, "%-14s%-10s%-8d%-10s%-20s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
+    fprintf(stdout, "%-14s%-10s%-8d%-10s%-30s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
             p->class, p->speciality, p->undertakeTask, p->phoneNum, p->rank);
     fclose(dataOutput);
 }
@@ -451,17 +456,41 @@ void printPeoTable(struct people *head) {
     char title[10][20] = {"学号", "姓名", "年龄", "类别",
                           "学院及专业", "班级", "本人特长",
                           "承担任务", "联系电话", "项目成员排名"};
-    fprintf(dataOutput, "%-14s%-10s%-8s%-10s%-20s%-16s%-20s%-20s%-14s%-8s\n", title[0], title[1], title[2],
+    fprintf(dataOutput, "%-14s%-10s%-8s%-10s%-30s%-16s%-20s%-20s%-14s%-8s\n", title[0], title[1], title[2],
             title[3], title[4], title[5], title[6], title[7], title[8],title[9]);
-    fprintf(stdout, "%-14s%-10s%-8s%-10s%-20s%-16s%-20s%-20s%-14s%-8s\n", title[0], title[1], title[2],
+    fprintf(stdout, "%-14s%-10s%-8s%-10s%-30s%-16s%-20s%-20s%-14s%-8s\n", title[0], title[1], title[2],
             title[3], title[4], title[5], title[6], title[7], title[8],title[9]);
 
     while (p) {
-        fprintf(dataOutput, "%-14s%-10s%-8d%-10s%-20s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
+        fprintf(dataOutput, "%-14s%-10s%-8d%-30s%-20s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
                 p->class, p->speciality, p->undertakeTask, p->phoneNum, p->rank);
-        fprintf(stdout, "%-14s%-10s%-8d%-10s%-20s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
+        fprintf(stdout, "%-14s%-10s%-8d%-10s%-30s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
                 p->class, p->speciality, p->undertakeTask, p->phoneNum, p->rank);
         p = p->next;
     }
     fclose(dataOutput);
 }
+
+void printPeoByRank(struct people *head) {
+    int rankArray[1000];
+    int temp = 0;
+    struct people *p = head->next;
+    int index = 0;
+    while (p) {
+        rankArray[index++] = p->rank;
+        p = p->next;
+    }
+    for (int i = 0; i < index; ++i) {
+        for (int j = i + 1; j < index; ++j) {
+            if (rankArray[i] > rankArray[j]) {
+                temp = rankArray[i];
+                rankArray[i] = rankArray[j];
+                rankArray[j] = temp;
+                exchangePeople(head, i + 1, j + 1);
+            }
+        }
+    }
+    printPeoTable(head);
+    sortPeople(head);
+}
+

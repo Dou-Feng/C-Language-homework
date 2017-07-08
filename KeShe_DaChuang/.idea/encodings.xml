@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/main.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/people.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/people.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/project.c" charset="GBK" />
     <file url="file://$PROJECT_DIR$/project.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/schedule.c" charset="GBK" />

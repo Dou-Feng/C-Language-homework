@@ -113,7 +113,12 @@ void findProject(struct project *head) {
             findProCollectionByProName(collection, head, temp_String);
             if (collection[0]) {
                 printf("查找结果是：\n");
-                printProCollection(collection);
+                for (int i = 0; collection[i]; ++i) {
+                    printProject(collection[i]);
+                    printf("人员信息：\n");
+                    printPeoByRank(collection[i]->peopleHead);
+                    printf("\n");
+                }
             } else {
                 printf("没有相匹配的结果\n");
             }
@@ -127,7 +132,12 @@ void findProject(struct project *head) {
             findProCollectionByMoney(collection, head, temp_fund[1], temp_fund[0]);
             if (collection[0]) {
                 printf("查找结果是：\n");
-                printProCollection(collection);
+                for (int i = 0; collection[i]; ++i) {
+                    printProject(collection[i]);
+                    printf("人员信息：\n");
+                    printPeoByRank(collection[i]->peopleHead);
+                    printf("\n");
+                }
             } else {
                 printf("没有相匹配的结果\n");
             }
@@ -138,7 +148,12 @@ void findProject(struct project *head) {
             findProCollectionByJudgement(collection, head, temp_String);
             if (collection[0]) {
                 printf("查找结果是：\n");
-                printProCollection(collection);
+                for (int i = 0; collection[i]; ++i) {
+                    printProject(collection[i]);
+                    printf("人员信息：\n");
+                    printPeoByRank(collection[i]->peopleHead);
+                    printf("\n");
+                }
             } else {
                 printf("没有相匹配的结果\n");
             }
@@ -160,7 +175,12 @@ void findProject(struct project *head) {
             findProCollectionByProductName(collection, head, temp_String);
             if (collection[0]) {
                 printf("查找结果是：\n");
-                printProCollection(collection);
+                for (int i = 0; collection[i]; ++i) {
+                    printProject(collection[i]);
+                    printf("人员信息：\n");
+                    printPeoByRank(collection[i]->peopleHead);
+                    printf("\n");
+                }
             } else {
                 printf("没有相匹配的结果\n");
             }
@@ -183,7 +203,12 @@ void findProject(struct project *head) {
                 temp_proName, temp_judgement, temp_productForm, temp_productName);
             if (collection[0]) {
                 printf("查找结果是：\n");
-                printProCollection(collection);
+                for (int i = 0; collection[i]; ++i) {
+                    printProject(collection[i]);
+                    printf("人员信息：\n");
+                    printPeoByRank(collection[i]->peopleHead);
+                    printf("\n");
+                }
             } else {
                 printf("没有相匹配的结果\n");
             }
@@ -543,7 +568,7 @@ void sortProject(struct project *head) {
     char temp[16];
     for (int i = 0; i < length; ++i) {
         for (int j = i; j < length; ++j) {
-            if (strcmp(temp_CNo[i], temp_CNo[j]) < 0) {
+            if (strcmp(temp_CNo[i], temp_CNo[j]) > 0) {
                 strcpy(temp, temp_CNo[i]);
                 strcpy(temp_CNo[i], temp_CNo[j]);
                 strcpy(temp_CNo[j], temp);
