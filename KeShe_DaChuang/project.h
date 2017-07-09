@@ -14,7 +14,7 @@ struct project {
     char CNo[10];
     char proName[40];
     float money;
-    int member;
+    int member;   /*关联人员表中的数据*/
     char startTime[9];
     char finishTime[9];
     char judgement[13];
@@ -25,6 +25,7 @@ struct project {
     struct people *peopleHead;
     struct project *next;
     struct project *prior;
+    int isSupported;
 };
 
 struct project *createProject();
@@ -60,7 +61,6 @@ void modifyProject(struct project *);
 
 void modifyProDetail(struct project *);
 
-
 void printProject(struct project *);
 
 void printProTable(struct project *);
@@ -71,3 +71,5 @@ void printProCollection(struct project **);
 void exchangeProject(struct project *, int, int);
 
 void sortProject(struct project *);
+
+void refreshProList(struct project *p);

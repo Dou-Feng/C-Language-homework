@@ -54,6 +54,8 @@ void modifyPeople(struct people *);
 void modifyPeopleDetail(struct people *p);
 
 
+
+
 void printPeoCollection(struct people **);
 
 void printPeople(struct people *);

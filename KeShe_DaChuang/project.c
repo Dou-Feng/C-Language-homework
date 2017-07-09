@@ -41,6 +41,7 @@ void addProject(struct project *head, FILE *data) {
     p->prior = prior;
     /*方式选择*/
     int way = 0;
+    p->member = 0;
     printf("请选择输入数据的方式\n"
                    "1.从文件输入\n"
                    "2.从键盘输入\n");
@@ -48,7 +49,7 @@ void addProject(struct project *head, FILE *data) {
     switch (way) {
         case 1:
             /*导入方式一，文件导入*/
-            fscanf(data, "%s%s%f%d%s%s%s%s%s%s%s", p->CNo, p->proName, &p->money, &p->member,
+            fscanf(data, "%s%s%f%d%s%s%s%s%s%s%s", p->CNo, p->proName, &p->money, &p->isSupported,
                 p->startTime, p->finishTime, p->judgement, p->leadMan, p->leadPhoneNum,
                 p->productForm, p->productName);
             break;
@@ -58,7 +59,7 @@ void addProject(struct project *head, FILE *data) {
                            " * 项目编号\n"
                            " * 项目名称\n"
                            " * 经费数\n"
-                           " * 参与人数\n"
+                           " * 是否支持，输入1(支持)/0（不支持)\n"
                            " * 立项时间\n"
                            " * 结题时间\n"
                            " * 完成评价\n"
@@ -66,7 +67,7 @@ void addProject(struct project *head, FILE *data) {
                            " * 负责人电话\n"
                            " * 成果形式\n"
                            " * 成果名称\n");
-            fscanf(stdin, "%s%s%f%d%s%s%s%s%s%s%s", p->CNo, p->proName, &p->money, &p->member,
+            fscanf(stdin, "%s%s%f%d%s%s%s%s%s%s%s", p->CNo, p->proName, &p->money, &p->isSupported,
                    p->startTime, p->finishTime, p->judgement, p->leadMan, p->leadPhoneNum,
                    p->productForm, p->productName);
             break;
@@ -80,7 +81,14 @@ void addProject(struct project *head, FILE *data) {
     sortProject(head);
 }
 
-
+void refreshProList(struct project *p) {
+    p->member = 0;
+    struct people *people1 = p->peopleHead->next;
+    while (people1) {
+        p->member++;
+        people1 = people1->next;
+    }
+}
 
 /*按项目名称、 经费数、结题评价、成果类型、成果名称等 5 种方式
 进行查询。其中对项目名称、 成果名称可进行模糊查询， 经费数可进行区间查询（如
@@ -143,7 +151,7 @@ void findProject(struct project *head) {
             }
             break;
         case 3:
-            printf("请输入结题评价（1.优 2.良 3.中 4.差 5.未能正常解题）\n");
+            printf("请输入结题评价（1.优 2.良 3.中 4.差 5.未能正常结题）\n");
             scanf("%s", temp_String);
             findProCollectionByJudgement(collection, head, temp_String);
             if (collection[0]) {
@@ -380,7 +388,9 @@ void modifyProDetail(struct project *p) {
                    "8.负责人\n"
                    "9.负责人电话\n"
                    "10.成果形式\n"
-                   "11.成果名称\n");
+                   "11.成果名称\n"
+                   "12.是否支持该项目（输入1支持，0不支持）\n"
+                   "13.修改人员细节\n");
     scanf("%d", &choice);
     switch (choice) {
         case 1:
@@ -438,7 +448,11 @@ void modifyProDetail(struct project *p) {
             scanf("%s", tempString);
             strcpy(p->productName, tempString);
             break;
-            case 12:
+        case 12:
+            printf("请输入1/0");
+            scanf("%d", &tempNum);
+            p->isSupported = tempNum;
+        case 13:
             printPeoTable(p->peopleHead);
             modifyPeople(p->peopleHead);
         default:
@@ -460,11 +474,11 @@ void modifyProDetail(struct project *p) {
 成果形式
 成果名称*/
 void printProject(struct project *p) {
-    FILE *dataOutput = fopen("H:/data/Output_project.txt", "w+");
-    fprintf(dataOutput, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-8s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
+    FILE *dataOutput = fopen("H:/data/Output_project_temp.txt", "a+");
+    fprintf(dataOutput, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-12s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
             p->startTime, p->finishTime, p->judgement, p->leadMan,
             p->leadPhoneNum, p->productForm, p->productName);
-    fprintf(stdout, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-8s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
+    fprintf(stdout, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-12s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
             p->startTime, p->finishTime, p->judgement, p->leadMan,
             p->leadPhoneNum, p->productForm, p->productName);
     fclose(dataOutput);
@@ -473,22 +487,26 @@ void printProject(struct project *p) {
 void printProTable(struct project *head) {
     /*第一个头节点不存放数据*/
     struct project *p = head->next;
-    FILE *dataOutput = fopen("H:/data/Output_project.txt", "w+");
-    char title[11][20] = {"项目编号", "项目名称", "经费数", "参与人数",
+    FILE *dataOutput = fopen("H:/data/Output_project.txt", "a+");
+    char title[12][20] = {"项目编号", "项目名称", "经费数(元)", "参与人数",
                           "立项时间", "结题时间", "完成评价", "负责人",
-                          "负责人电话", "成果形式", "成果名称"};
-    fprintf(dataOutput, "%-10s%-40s%-10s%-10s%-10s%-10s%-10s%-8s%-15s%-10s%-16s\n", title[0], title[1], title[2],
-            title[3], title[4], title[5], title[6], title[7], title[8],title[9], title[10]);
-    fprintf(stdout, "%-10s%-40s%-10s%-10s%-10s%-10s%-10s%-8s%-15s%-10s%-16s\n", title[0], title[1], title[2],
-            title[3], title[4], title[5], title[6], title[7], title[8],title[9], title[10]);
+                          "负责人电话", "成果形式", "成果名称", "是否支持"};
+    fprintf(dataOutput, "%-10s%-40s%-12s%-10s%-10s%-10s%-14s%-8s%-15s%-10s%-16s%-10s\n", title[0], title[1], title[2],
+            title[3], title[4], title[5], title[6], title[7], title[8],title[9], title[10], title[11]);
+    fprintf(stdout, "%-10s%-40s%-12s%-10s%-10s%-10s%-14s%-8s%-15s%-10s%-16s%-10s\n", title[0], title[1], title[2],
+            title[3], title[4], title[5], title[6], title[7], title[8],title[9], title[10], title[11]);
 
     while (p) {
-        fprintf(dataOutput, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-10s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
+        char support[2][3] = {"否", "是"};
+        int way = 0;
+        if (p->isSupported)
+            way= 1;
+        fprintf(dataOutput, "%-10s%-40s%-12.2f%-10d%-10s%-10s%-14s%-8s%-15s%-10s%-16s%-10s\n", p->CNo, p->proName, p->money, p->member,
                 p->startTime, p->finishTime, p->judgement, p->leadMan,
-                p->leadPhoneNum, p->productForm, p->productName);
-        fprintf(stdout, "%-10s%-40s%-10.4f%-10d%-10s%-10s%-10s%-8s%-15s%-10s%-16s\n", p->CNo, p->proName, p->money, p->member,
+                p->leadPhoneNum, p->productForm, p->productName, support[way]);
+        fprintf(stdout, "%-10s%-40s%-12.2f%-10d%-10s%-10s%-14s%-8s%-15s%-10s%-16s%-10s\n", p->CNo, p->proName, p->money, p->member,
                 p->startTime, p->finishTime, p->judgement, p->leadMan,
-                p->leadPhoneNum, p->productForm, p->productName);
+                p->leadPhoneNum, p->productForm, p->productName, support[way]);
         p = p->next;
     }
     fclose(dataOutput);

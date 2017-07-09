@@ -10,6 +10,15 @@
 
 #endif //KESHE_DACHUANG_SCHEDULE_H
 /*双向链表*/
+/* 年度编号
+ * 投入资金
+ * 负责人
+ * 申报项目数   (关联项目数量）
+ * 实际支持项目 （关联isSupported)
+ * 结题项目数  (关联结题评价）
+ * 计划开始时间
+ * 计划完结时间
+ * 项目基本信息*/
 struct schedule {
     char CSNo[10];
     float fund;
@@ -19,7 +28,6 @@ struct schedule {
     int finishProNum;
     char startTime[9];
     char finishTime[9];
-    int excellentProNum;
     struct project *projectHead;
     struct schedule *next;
     struct schedule *prior;
@@ -74,3 +82,5 @@ void exchangeSchedule(struct schedule *head, int chg1, int chg2);
 
 /*按照字典序把年度编号进行排序*/
 void sortSchedule(struct schedule *head);
+
+void refreshSchList(struct schedule *p);

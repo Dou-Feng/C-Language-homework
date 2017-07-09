@@ -47,12 +47,14 @@ int main() {
                     switch (method2) {
                         case 1:
                             addProject(targetPro, projectData);
+                            refreshSchList(collectionSch[0]);
                             break;
                         case 2:
                             deleteProject(targetPro);
                             break;
                         case 3:
                             modifyProject(targetPro);
+                            refreshSchList(collectionSch[0]);
                             break;
                         case 4:
                             findProject(targetPro);
@@ -71,6 +73,7 @@ int main() {
                                 switch (method3) {
                                     case 1:
                                         addPeople(targetPeo, peopleData);
+                                        refreshProList(collectionPro[0]);
                                         break;
                                     case 2:
                                         deletePeople(targetPeo);

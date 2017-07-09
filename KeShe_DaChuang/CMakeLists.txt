@@ -3,5 +3,5 @@ project(KeShe_DaChuang)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.c schedule.h project.h people.h people.c project.c schedule.c)
-add_executable(KeShe_DaChuang ${SOURCE_FILES})
+set(SOURCE_FILES main.c schedule.h project.h people.h people.c project.c schedule.c total.c total.h)
+add_executable(KeShe_DaChuang ${SOURCE_FILES} total.c total.h)

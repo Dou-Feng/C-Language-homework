@@ -435,7 +435,7 @@ void sortPeople(struct people *head) {
 项目成员排名
 */
 void printPeople(struct people *p) {
-    FILE *dataOutput = fopen("H:/data/Output_people.txt", "w+");
+    FILE *dataOutput = fopen("H:/data/Output_people_temp.txt", "a+");
     fprintf(dataOutput, "%-14s%-10s%-8d%-10s%-30s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
             p->class, p->speciality, p->undertakeTask, p->phoneNum, p->rank);
     fprintf(stdout, "%-14s%-10s%-8d%-10s%-30s%-16s%-20s%-20s%-14s%-8d\n", p->SNo, p->name, p->age, p->grade, p->collegeAndMajor,
@@ -452,7 +452,7 @@ void printPeoCollection(struct people **collection) {
 void printPeoTable(struct people *head) {
     /*第一个头节点不存放数据*/
     struct people *p = head->next;
-    FILE *dataOutput = fopen("H:/data/Output_people.txt", "w+");
+    FILE *dataOutput = fopen("H:/data/Output_people.txt", "a+");
     char title[10][20] = {"学号", "姓名", "年龄", "类别",
                           "学院及专业", "班级", "本人特长",
                           "承担任务", "联系电话", "项目成员排名"};

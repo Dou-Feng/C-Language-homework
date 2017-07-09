@@ -31,6 +31,7 @@ void addSchedule(struct schedule *head, FILE *data) {
     /*添加到链表尾，头指针不存放数据，使得每个节点都会有前一个节点指向它，方便之后的链表排序和元素交换*/
     struct schedule *p = head;
     struct schedule *prior;
+    struct project *prop;
     while (p->next) {
         p = p->next;
     }
@@ -38,8 +39,16 @@ void addSchedule(struct schedule *head, FILE *data) {
     prior = p;
     p = p->next;
     p->prior = prior;
+    /*为计划添加项目*/
+    p->projectHead = createProject();
+    /*next节点为NUll*/
+    p->next = NULL;
+    prop = p->projectHead->next;
     /*方式选择*/
     int way = 0;
+    p->projectNum = 0;
+    p->realSupProNum = 0;
+    p->finishProNum = 0;
     printf("请选择输入数据的方式\n"
                    "1.从文件输入\n"
                    "2.从键盘输入\n");
@@ -47,9 +56,8 @@ void addSchedule(struct schedule *head, FILE *data) {
     switch (way) {
         case 1:
             /*导入方式一，文件导入*/
-            fscanf(data, "%s%f%s%d%d%d%s%s%d", p->CSNo, &p->fund, p->leadMan,
-                   &p->projectNum, &p->realSupProNum, &p->finishProNum, p->startTime,
-                   p->finishTime, &p->excellentProNum);
+            fscanf(data, "%s%f%s%s%s", p->CSNo, &p->fund, p->leadMan,
+                   p->startTime, p->finishTime);
             break;
         case 2:
             /*导入方式二，键盘输入*/
@@ -57,26 +65,45 @@ void addSchedule(struct schedule *head, FILE *data) {
                            " * 年度编号\n"
                            " * 投入资金\n"
                            " * 负责人\n"
-                           " * 申报项目数\n"
-                           " * 实际支持项目\n"
-                           " * 结题项目数\n"
                            " * 计划开始时间\n"
                            " * 计划完结时间\n"
                            " * 优秀项目数\n");
-            fscanf(stdin, "%s%f%s%d%d%d%s%s%d", p->CSNo, &p->fund, p->leadMan,
-                   &p->projectNum, &p->realSupProNum, &p->finishProNum, p->startTime,
-                   p->finishTime, &p->excellentProNum);
+            fscanf(stdin, "%s%f%s%s%s", p->CSNo, &p->fund, p->leadMan,
+                   p->startTime, p->finishTime);
             break;
         default:
             break;
     }
-    /*为计划添加项目*/
-    p->projectHead = createProject();
-    /*next节点为NUll*/
-    p->next = NULL;
+
     sortSchedule(head);
+    /*关联数据应该是从下一级链表中获得，而不是从键盘或者文件获得*/
+    while (prop) {
+        p->projectNum++;
+        if (prop->isSupported)
+            p->realSupProNum++;
+        if (!strstr(prop->judgement, "未能正常结题")) {
+            p->finishProNum++;
+        }
+        prop = prop->next;
+    }
 }
 
+
+void refreshSchList(struct schedule *p) {
+    struct project *proP = p->projectHead->next;
+    p->projectNum = 0;
+    p->realSupProNum = 0;
+    p->finishProNum = 0;
+    while (proP) {
+        p->projectNum++;
+        if (proP->isSupported)
+            p->realSupProNum++;
+        if (!strstr(proP->judgement, "未能正常结题")) {
+            p->finishProNum++;
+        }
+        proP = proP->next;
+    }
+}
 
 /*删除操作*/
 void deleteSchedule(struct schedule *head) {
@@ -270,42 +297,41 @@ void findSchCollectionCombine(struct schedule **collection, struct schedule *hea
  * 年度编号
  * 投入资金
  * 负责人
- * 申报项目数
- * 实际支持项目
- * 结题项目数
+ * 申报项目数(关联项目数量）
+ * 实际支持项目 （关联isSupported)
+ * 结题项目数  (关联结题评价）
  * 计划开始时间
  * 计划完结时间
- * 优秀项目数
  * 项目基本信息*/
 void printSchedule(struct schedule *p) {
-    FILE *dataOutput = fopen("H:/data/Output_schedule.txt", "w+");
-    fprintf(dataOutput, "%-12s%-12.4f%-10s%-14d%-16d%-14d%-16s%-14s%-16d\n", p->CSNo, p->fund, p->leadMan,
+    FILE *dataOutput = fopen("H:/data/Output_schedule_temp.txt", "a+");
+    fprintf(dataOutput, "%-12s%-12.4f%-10s%-14d%-16d%-14d%-16s%-14s\n", p->CSNo, p->fund, p->leadMan,
             p->projectNum, p->realSupProNum, p->finishProNum, p->startTime,
-            p->finishTime, p->excellentProNum);
-    fprintf(stdout, "%-12s%-12.4f%-10s%-14d%-16d%-14d%-16s%-14s%-16d\n", p->CSNo, p->fund, p->leadMan,
+            p->finishTime);
+    fprintf(stdout, "%-12s%-12.4f%-10s%-14d%-16d%-14d%-16s%-14s\n", p->CSNo, p->fund, p->leadMan,
             p->projectNum, p->realSupProNum, p->finishProNum, p->startTime,
-            p->finishTime, p->excellentProNum);
+            p->finishTime);
     fclose(dataOutput);
 }
 
 void printSchTable(struct schedule *head) {
     /*第一个头节点不存放数据*/
     struct schedule *p = head->next;
-    FILE *dataOutput = fopen("H:/data/Output_schedule.txt", "w+");
+    FILE *dataOutput = fopen("H:/data/Output_schedule.txt", "a+");
     char title[10][20] = {"年度编号", "投入资金", "负责人", "申报项目数",
                           "实际支持项目", "结题项目数", "计划开始时间", "计划完结时间",
                           "优秀项目数", "项目基本信息"};
-    fprintf(dataOutput, "%-12s%-12s%-8s%-14s%-16s%-14s%-16s%-14s%-16s\n", title[0], title[1], title[2],
-            title[3], title[4], title[5], title[6], title[7], title[8]);
-    fprintf(stdout, "%-12s%-12s%-8s%-14s%-16s%-14s%-16s%-14s%-16s\n", title[0], title[1], title[2],
-            title[3], title[4], title[5], title[6], title[7], title[8]);
+    fprintf(dataOutput, "%-12s%-12s%-8s%-14s%-16s%-14s%-16s%-14s\n", title[0], title[1], title[2],
+            title[3], title[4], title[5], title[6], title[7]);
+    fprintf(stdout, "%-12s%-12s%-8s%-14s%-16s%-14s%-16s%-14s\n", title[0], title[1], title[2],
+            title[3], title[4], title[5], title[6], title[7]);
     while (p) {
-        fprintf(dataOutput, "%-12s%-12.4f%-8s%-14d%-16d%-14d%-16s%-14s%-16d\n", p->CSNo, p->fund, p->leadMan,
+        fprintf(dataOutput, "%-12s%-12.4f%-8s%-14d%-16d%-14d%-16s%-14s\n", p->CSNo, p->fund, p->leadMan,
                 p->projectNum, p->realSupProNum, p->finishProNum, p->startTime,
-                p->finishTime, p->excellentProNum);
-        fprintf(stdout, "%-12s%-12.4f%-8s%-14d%-16d%-14d%-16s%-14s%-16d\n", p->CSNo, p->fund, p->leadMan,
+                p->finishTime);
+        fprintf(stdout, "%-12s%-12.4f%-8s%-14d%-16d%-14d%-16s%-14s\n", p->CSNo, p->fund, p->leadMan,
                 p->projectNum, p->realSupProNum, p->finishProNum, p->startTime,
-                p->finishTime, p->excellentProNum);
+                p->finishTime);
         p = p->next;
     }
     fclose(dataOutput);
@@ -356,8 +382,7 @@ void modifyDetailSchedule(struct schedule *p) {
                    " 6 结题项目数\n"
                    " 7 计划开始时间\n"
                    " 8 计划完结时间\n"
-                   " 9 优秀项目数\n"
-                   " 10 项目基本信息\n"
+                   " 9 项目基本信息\n"
                    "(input enter to continue)\n");
     scanf("%d", &choice);
     switch (choice) {
@@ -401,12 +426,7 @@ void modifyDetailSchedule(struct schedule *p) {
             scanf("%s", tempString);
             strcpy(p->finishTime, tempString);
             break;
-        case 9:
-            printf("请输入新的优秀项目数：\n");
-            scanf("%d", &tempNum);
-            p->excellentProNum = tempNum;
-            break;
-            case 10:
+            case 9:
                 //*项目具体修改*//*
             printProTable(p->projectHead);
             modifyProject(p->projectHead);
