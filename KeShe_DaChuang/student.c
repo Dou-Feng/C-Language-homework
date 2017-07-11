@@ -50,9 +50,10 @@ struct student *getStudentData(char *name, char *SNo, struct project **p) { /* Ð
     struct student *stu = (struct student *) malloc(sizeof(struct student));
     /*ÓÃÓÚ¼ÓÈëÏîÄ¿Êý×éµÄË÷Òý*/
     int index;
+    memset(stu, 0, sizeof(struct student));
     for (index = 0; p[index]; ++index) {
         stu->collection_project[index] = p[index];
-        if (strcmp(p[index]->judgement, "Î´ÄÜÕý³£Í¨¹ý")) {
+        if (strcmp(p[index]->judgement, "Î´ÄÜÕý³£½áÌâ")) {
             stu->passingRate += 1;
         } else {
             stu->unfinishedRate += 1;
@@ -61,6 +62,8 @@ struct student *getStudentData(char *name, char *SNo, struct project **p) { /* Ð
             stu->excellentAndGoodRate += 1;
         }
     }
+    /*±ØÐëÒÔNULL½áÎ²*/
+    stu->collection_project[index] = NULL;
     /*µÃµ½µÄÏîÄ¿Êý¾ÍÊÇË÷ÒýÊý*/
     stu->project_number = index;
     /*ÓÅÁ¼ÂÊ: ÓÅÁ¼Êý / ÏîÄ¿Êý*/
@@ -74,7 +77,7 @@ struct student *getStudentData(char *name, char *SNo, struct project **p) { /* Ð
 }
 
 void printStudent(struct student *p) {
-    printf("%-10s%-14d%-12.4f%-12.4f%-10.4f\n", p->name, p->project_number, p->passingRate, p->excellentAndGoodRate, p->unfinishedRate);
+    printf("%-12s%-16d%-14.4f%-14.4f%-14.4f\n", p->name, p->project_number, p->passingRate, p->excellentAndGoodRate, p->unfinishedRate);
     /*ÏÈ²»´òÓ¡ÏîÄ¿ÏêÏ¸Êý¾Ý*/
     /*printf("²ÎÓëµÄÏîÄ¿Îª£º\n");
     printProCollection(p->collection_project);*/
