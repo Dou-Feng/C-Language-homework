@@ -7,12 +7,14 @@
 
 #endif //KESHE_DACHUANG_STUDENT_H
 
-#include "schedule.h"
-/*ç»Ÿè®¡æŒ‡å®šæ—¶é—´æœŸé™å†…æŒ‡å®šå§“åçš„å­¦ç”Ÿå‚åŠ çš„é¡¹ç›®ã€é¡¹ç›®æ•°é‡ã€éªŒæ”¶é€šè¿‡ç‡ã€éªŒ
-æ”¶ä¼˜è‰¯ç‡ã€æœªç»“é¢˜ç‡ã€‚æ”¯æŒæ¨¡ç³ŠæŸ¥è¯¢ï¼Œå¯æŒ‰å­¦å·ã€å§“åã€é¡¹ç›®æ•°é‡ã€éªŒæ”¶é€šè¿‡ç‡ç­‰
-æ’åºã€‚ æ²¡æœ‰æŒ‡å®šæ—¶é—´æœŸé™æ—¶ä¸ºæœ‰è®°å½•ä»¥æ¥çš„æ‰€æœ‰æƒ…å†µã€‚*/
+/*Í³¼ÆÖ¸¶¨Ê±¼äÆÚÏŞÄÚÖ¸¶¨ĞÕÃûµÄÑ§Éú²Î¼ÓµÄÏîÄ¿¡¢ÏîÄ¿ÊıÁ¿¡¢ÑéÊÕÍ¨¹ıÂÊ¡¢Ñé
+ÊÕÓÅÁ¼ÂÊ¡¢Î´½áÌâÂÊ¡£Ö§³ÖÄ£ºı²éÑ¯£¬¿É°´Ñ§ºÅ¡¢ĞÕÃû¡¢ÏîÄ¿ÊıÁ¿¡¢ÑéÊÕÍ¨¹ıÂÊµÈ
+ÅÅĞò¡£ Ã»ÓĞÖ¸¶¨Ê±¼äÆÚÏŞÊ±ÎªÓĞ¼ÇÂ¼ÒÔÀ´µÄËùÓĞÇé¿ö¡£*/
+
+#include "college.h"
 
 struct student {
+    char SNo[12];
     char name[12];
     struct project *collection_project[100];
     int project_number;
@@ -21,8 +23,9 @@ struct student {
     float  unfinishedRate;
 };
 
-void getProject(struct project **,char *name, struct schedule *head, char *startTime, char *finishTime);
+struct student *getStudent(char *name, struct schedule *head, char *startTime, char *finishTime);
 
-struct student *getStudentData(struct project *);
+struct student *getStudentData(char *, char *, struct project **);
 
-void fullStudentCollection(struct student **, struct project **);
+void printStudent(struct student *);
+

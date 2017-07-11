@@ -109,7 +109,6 @@ int main() {
         printSchTable(head);
         getInTimeSch(collectionSch_data, head, "20100101", "20180101");
         fullDataCollection(collection_data, collectionSch_data);
-        sortData(collection_data, collectionSch_data);
         printDataCollection(collection_data);
     }
     fclose(projectData);

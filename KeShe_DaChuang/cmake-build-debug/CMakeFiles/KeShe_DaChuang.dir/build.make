@@ -200,6 +200,54 @@ CMakeFiles/KeShe_DaChuang.dir/student.c.obj.provides: CMakeFiles/KeShe_DaChuang.
 CMakeFiles/KeShe_DaChuang.dir/student.c.obj.provides.build: CMakeFiles/KeShe_DaChuang.dir/student.c.obj
 
 
+CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj: CMakeFiles/KeShe_DaChuang.dir/flags.make
+CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj: ../studentTable.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=G:\C_language\KeShe_DaChuang\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\KeShe_DaChuang.dir\studentTable.c.obj   -c G:\C_language\KeShe_DaChuang\studentTable.c
+
+CMakeFiles/KeShe_DaChuang.dir/studentTable.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/KeShe_DaChuang.dir/studentTable.c.i"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E G:\C_language\KeShe_DaChuang\studentTable.c > CMakeFiles\KeShe_DaChuang.dir\studentTable.c.i
+
+CMakeFiles/KeShe_DaChuang.dir/studentTable.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/KeShe_DaChuang.dir/studentTable.c.s"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S G:\C_language\KeShe_DaChuang\studentTable.c -o CMakeFiles\KeShe_DaChuang.dir\studentTable.c.s
+
+CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj.requires:
+
+.PHONY : CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj.requires
+
+CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj.provides: CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj.requires
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj.provides.build
+.PHONY : CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj.provides
+
+CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj.provides.build: CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj
+
+
+CMakeFiles/KeShe_DaChuang.dir/college.c.obj: CMakeFiles/KeShe_DaChuang.dir/flags.make
+CMakeFiles/KeShe_DaChuang.dir/college.c.obj: ../college.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=G:\C_language\KeShe_DaChuang\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/KeShe_DaChuang.dir/college.c.obj"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\KeShe_DaChuang.dir\college.c.obj   -c G:\C_language\KeShe_DaChuang\college.c
+
+CMakeFiles/KeShe_DaChuang.dir/college.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/KeShe_DaChuang.dir/college.c.i"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E G:\C_language\KeShe_DaChuang\college.c > CMakeFiles\KeShe_DaChuang.dir\college.c.i
+
+CMakeFiles/KeShe_DaChuang.dir/college.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/KeShe_DaChuang.dir/college.c.s"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S G:\C_language\KeShe_DaChuang\college.c -o CMakeFiles\KeShe_DaChuang.dir\college.c.s
+
+CMakeFiles/KeShe_DaChuang.dir/college.c.obj.requires:
+
+.PHONY : CMakeFiles/KeShe_DaChuang.dir/college.c.obj.requires
+
+CMakeFiles/KeShe_DaChuang.dir/college.c.obj.provides: CMakeFiles/KeShe_DaChuang.dir/college.c.obj.requires
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/college.c.obj.provides.build
+.PHONY : CMakeFiles/KeShe_DaChuang.dir/college.c.obj.provides
+
+CMakeFiles/KeShe_DaChuang.dir/college.c.obj.provides.build: CMakeFiles/KeShe_DaChuang.dir/college.c.obj
+
+
 # Object files for target KeShe_DaChuang
 KeShe_DaChuang_OBJECTS = \
 "CMakeFiles/KeShe_DaChuang.dir/main.c.obj" \
@@ -207,7 +255,9 @@ KeShe_DaChuang_OBJECTS = \
 "CMakeFiles/KeShe_DaChuang.dir/project.c.obj" \
 "CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj" \
 "CMakeFiles/KeShe_DaChuang.dir/total.c.obj" \
-"CMakeFiles/KeShe_DaChuang.dir/student.c.obj"
+"CMakeFiles/KeShe_DaChuang.dir/student.c.obj" \
+"CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj" \
+"CMakeFiles/KeShe_DaChuang.dir/college.c.obj"
 
 # External object files for target KeShe_DaChuang
 KeShe_DaChuang_EXTERNAL_OBJECTS =
@@ -218,11 +268,13 @@ KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/project.c.obj
 KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj
 KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/total.c.obj
 KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/student.c.obj
+KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj
+KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/college.c.obj
 KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/build.make
 KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/linklibs.rsp
 KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/objects1.rsp
 KeShe_DaChuang.exe: CMakeFiles/KeShe_DaChuang.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=G:\C_language\KeShe_DaChuang\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable KeShe_DaChuang.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=G:\C_language\KeShe_DaChuang\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable KeShe_DaChuang.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\KeShe_DaChuang.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -236,6 +288,8 @@ CMakeFiles/KeShe_DaChuang.dir/requires: CMakeFiles/KeShe_DaChuang.dir/project.c.
 CMakeFiles/KeShe_DaChuang.dir/requires: CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj.requires
 CMakeFiles/KeShe_DaChuang.dir/requires: CMakeFiles/KeShe_DaChuang.dir/total.c.obj.requires
 CMakeFiles/KeShe_DaChuang.dir/requires: CMakeFiles/KeShe_DaChuang.dir/student.c.obj.requires
+CMakeFiles/KeShe_DaChuang.dir/requires: CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj.requires
+CMakeFiles/KeShe_DaChuang.dir/requires: CMakeFiles/KeShe_DaChuang.dir/college.c.obj.requires
 
 .PHONY : CMakeFiles/KeShe_DaChuang.dir/requires
 

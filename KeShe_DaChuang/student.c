@@ -4,43 +4,79 @@
 
 #include "student.h"
 
-/*å¾—åˆ°æ»¡è¶³æ¡ä»¶çš„é¡¹ç›®*/
-void getProject(struct project **collection, char *name, struct schedule *head, char *startTime, char *finishTime) {
-    /*æ•°ç»„ä¸‹æ ‡*/
+/*µÃµ½Âú×ãÌõ¼þµÄÏîÄ¿*/
+/*ÏÈµÃµ½Âú×ãÃû×ÖµÄprojectÈ»ºó£¬ÔÚ´ÓprojectÖÐ³éÈ¡Êý¾Ý£¬¼ÓÈëµ½studentÖÐ*/
+struct student *getStudent(char *name, struct schedule *head, char *startTime, char *finishTime) {
+    /*Êý×éÏÂ±ê*/
     int index = 0;
-    /*è®¡åˆ’è¡¨ç§»åŠ¨æŒ‡é’ˆ*/
+    char SNo[10];
+    struct project *collection[1000];
+    /*¼Æ»®±íÒÆ¶¯Ö¸Õë*/
     struct schedule *p_schedule = head->next;
     while (p_schedule) {
-        /*é¡¹ç›®ç§»åŠ¨æŒ‡é’ˆ*/
+        /*ÏîÄ¿ÒÆ¶¯Ö¸Õë*/
         struct project *p_project = p_schedule->projectHead->next;
         while (p_project) {
-            /*äººå‘˜ç§»åŠ¨æŒ‡é’ˆ*/
+            /*ÈËÔ±ÒÆ¶¯Ö¸Õë*/
             struct people *p_people = p_project->peopleHead->next;
-            /*å½“äººå‘˜ä¸ä¸ºç©ºä¸”åœ¨æ—¶é—´é™å®šèŒƒå›´ä¹‹å†…ä¸ºçœŸ*/
+            /*µ±ÈËÔ±²»Îª¿ÕÇÒÔÚÊ±¼äÏÞ¶¨·¶Î§Ö®ÄÚÎªÕæ*/
             while (p_people && strcmp(p_project->startTime, startTime) >= 0 &&
                    strcmp(p_project->finishTime, finishTime) <= 0) {
-                /*åˆ¤æ–­ï¼šå½“åå­—ä¸€è‡´æ—¶ï¼Œå¯ä»¥åŠ å…¥åˆ°å®¹å™¨*/
+                /*ÅÐ¶Ï£ºµ±Ãû×ÖÒ»ÖÂÊ±£¬¿ÉÒÔ¼ÓÈëµ½ÈÝÆ÷*/
                 if (strcmp(p_people->name, name) == 0) {
                     collection[index++] = p_project;
-                    /*ç›´æŽ¥è·³å‡ºè¯¥é¡¹ç›®ï¼Œä¸ä¼šå†éåŽ†äººå‘˜è¡¨äº†*/
+                    strcpy(SNo, p_people->SNo);
+                    /*Ö±½ÓÌø³ö¸ÃÏîÄ¿£¬²»»áÔÙ±éÀúÈËÔ±±íÁË*/
                     break;
                 }
-                /*æŒ‡é’ˆç§»ä½*/
+                /*Ö¸ÕëÒÆÎ»*/
                 p_people = p_people->next;
             }
-            /*æŒ‡é’ˆç§»ä½*/
+            /*Ö¸ÕëÒÆÎ»*/
             p_project = p_project->next;
         }
-        /*æŒ‡é’ˆç§»ä½*/
+        /*Ö¸ÕëÒÆÎ»*/
         p_schedule = p_schedule->next;
     }
-    /*æ³¨æ„æœ€åŽæ˜¯ä»¥NULLç»“æŸ*/
+    /*×¢Òâ×îºóÊÇÒÔNULL½áÊø*/
     collection[index] = NULL;
+    return getStudentData(name, SNo, collection);
 }
 
-/*ç»Ÿè®¡æŒ‡å®šæ—¶é—´æœŸé™å†…æŒ‡å®šå§“åçš„å­¦ç”Ÿå‚åŠ çš„é¡¹ç›®ã€é¡¹ç›®æ•°é‡ã€éªŒæ”¶é€šè¿‡çŽ‡ã€éªŒ
-æ”¶ä¼˜è‰¯çŽ‡ã€æœªç»“é¢˜çŽ‡ã€‚æ”¯æŒæ¨¡ç³ŠæŸ¥è¯¢ï¼Œå¯æŒ‰å­¦å·ã€å§“åã€é¡¹ç›®æ•°é‡ã€éªŒæ”¶é€šè¿‡çŽ‡ç­‰
-æŽ’åºã€‚ æ²¡æœ‰æŒ‡å®šæ—¶é—´æœŸé™æ—¶ä¸ºæœ‰è®°å½•ä»¥æ¥çš„æ‰€æœ‰æƒ…å†µã€‚*/
-struct student *getStudentData(struct project *p) {
-
+/*Í³¼ÆÖ¸¶¨Ê±¼äÆÚÏÞÄÚÖ¸¶¨ÐÕÃûµÄÑ§Éú²Î¼ÓµÄÏîÄ¿¡¢ÏîÄ¿ÊýÁ¿¡¢ÑéÊÕÍ¨¹ýÂÊ¡¢Ñé
+ÊÕÓÅÁ¼ÂÊ¡¢Î´½áÌâÂÊ¡£Ö§³ÖÄ£ºý²éÑ¯£¬¿É°´Ñ§ºÅ¡¢ÐÕÃû¡¢ÏîÄ¿ÊýÁ¿¡¢ÑéÊÕÍ¨¹ýÂÊµÈ
+ÅÅÐò¡£ Ã»ÓÐÖ¸¶¨Ê±¼äÆÚÏÞÊ±ÎªÓÐ¼ÇÂ¼ÒÔÀ´µÄËùÓÐÇé¿ö¡£*/
+struct student *getStudentData(char *name, char *SNo, struct project **p) { /* ÐèÒªÃû×ÖºÍÂú×ãÃû×ÖµÄÏîÄ¿Êý×é*/
+    struct student *stu = (struct student *) malloc(sizeof(struct student));
+    /*ÓÃÓÚ¼ÓÈëÏîÄ¿Êý×éµÄË÷Òý*/
+    int index;
+    for (index = 0; p[index]; ++index) {
+        stu->collection_project[index] = p[index];
+        if (strcmp(p[index]->judgement, "Î´ÄÜÕý³£Í¨¹ý")) {
+            stu->passingRate += 1;
+        } else {
+            stu->unfinishedRate += 1;
+        }
+        if (strcmp(p[index]->judgement, "ÓÅ")  == 0 && strcmp(p[index]->judgement, "Á¼")  == 0) {
+            stu->excellentAndGoodRate += 1;
+        }
+    }
+    /*µÃµ½µÄÏîÄ¿Êý¾ÍÊÇË÷ÒýÊý*/
+    stu->project_number = index;
+    /*ÓÅÁ¼ÂÊ: ÓÅÁ¼Êý / ÏîÄ¿Êý*/
+    stu->excellentAndGoodRate /= stu->project_number;
+    /*Í¨¹ýÂÊ£ºÍ¨¹ýÊý / ÏîÄ¿Êý*/
+    stu->passingRate /= stu->project_number;
+    strcpy(stu->name, name);
+    strcpy(stu->SNo, SNo);
+    stu->unfinishedRate /= stu->project_number;
+    return stu;
 }
+
+void printStudent(struct student *p) {
+    printf("%-10s%-14d%-12.4f%-12.4f%-10.4f\n", p->name, p->project_number, p->passingRate, p->excellentAndGoodRate, p->unfinishedRate);
+    /*ÏÈ²»´òÓ¡ÏîÄ¿ÏêÏ¸Êý¾Ý*/
+    /*printf("²ÎÓëµÄÏîÄ¿Îª£º\n");
+    printProCollection(p->collection_project);*/
+}
+

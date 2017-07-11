@@ -122,6 +122,33 @@ KeShe_DaChuang/fast:
 	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/build
 .PHONY : KeShe_DaChuang/fast
 
+college.obj: college.c.obj
+
+.PHONY : college.obj
+
+# target to build an object file
+college.c.obj:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/college.c.obj
+.PHONY : college.c.obj
+
+college.i: college.c.i
+
+.PHONY : college.i
+
+# target to preprocess a source file
+college.c.i:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/college.c.i
+.PHONY : college.c.i
+
+college.s: college.c.s
+
+.PHONY : college.s
+
+# target to generate assembly for a file
+college.c.s:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/college.c.s
+.PHONY : college.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -257,6 +284,33 @@ student.c.s:
 	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/student.c.s
 .PHONY : student.c.s
 
+studentTable.obj: studentTable.c.obj
+
+.PHONY : studentTable.obj
+
+# target to build an object file
+studentTable.c.obj:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj
+.PHONY : studentTable.c.obj
+
+studentTable.i: studentTable.c.i
+
+.PHONY : studentTable.i
+
+# target to preprocess a source file
+studentTable.c.i:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/studentTable.c.i
+.PHONY : studentTable.c.i
+
+studentTable.s: studentTable.c.s
+
+.PHONY : studentTable.s
+
+# target to generate assembly for a file
+studentTable.c.s:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/studentTable.c.s
+.PHONY : studentTable.c.s
+
 total.obj: total.c.obj
 
 .PHONY : total.obj
@@ -293,6 +347,9 @@ help:
 	@echo ... KeShe_DaChuang
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... college.obj
+	@echo ... college.i
+	@echo ... college.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
@@ -308,6 +365,9 @@ help:
 	@echo ... student.obj
 	@echo ... student.i
 	@echo ... student.s
+	@echo ... studentTable.obj
+	@echo ... studentTable.i
+	@echo ... studentTable.s
 	@echo ... total.obj
 	@echo ... total.i
 	@echo ... total.s

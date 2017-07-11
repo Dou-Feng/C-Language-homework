@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="G:/C_language/KeShe_DaChuang/college.c">
+			<Option target="KeShe_DaChuang"/>
+		</Unit>
+		<Unit filename="G:/C_language/KeShe_DaChuang/college.h">
+			<Option target="KeShe_DaChuang"/>
+		</Unit>
 		<Unit filename="G:/C_language/KeShe_DaChuang/main.c">
 			<Option target="KeShe_DaChuang"/>
 		</Unit>
@@ -107,6 +113,12 @@
 			<Option target="KeShe_DaChuang"/>
 		</Unit>
 		<Unit filename="G:/C_language/KeShe_DaChuang/student.h">
+			<Option target="KeShe_DaChuang"/>
+		</Unit>
+		<Unit filename="G:/C_language/KeShe_DaChuang/studentTable.c">
+			<Option target="KeShe_DaChuang"/>
+		</Unit>
+		<Unit filename="G:/C_language/KeShe_DaChuang/studentTable.h">
 			<Option target="KeShe_DaChuang"/>
 		</Unit>
 		<Unit filename="G:/C_language/KeShe_DaChuang/total.c">

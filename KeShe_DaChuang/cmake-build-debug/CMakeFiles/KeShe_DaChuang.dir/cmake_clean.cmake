@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj"
   "CMakeFiles/KeShe_DaChuang.dir/total.c.obj"
   "CMakeFiles/KeShe_DaChuang.dir/student.c.obj"
+  "CMakeFiles/KeShe_DaChuang.dir/studentTable.c.obj"
+  "CMakeFiles/KeShe_DaChuang.dir/college.c.obj"
   "KeShe_DaChuang.pdb"
   "KeShe_DaChuang.exe"
   "KeShe_DaChuang.exe.manifest"
