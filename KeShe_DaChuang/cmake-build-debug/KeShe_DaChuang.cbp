@@ -103,6 +103,18 @@
 		<Unit filename="G:/C_language/KeShe_DaChuang/schedule.h">
 			<Option target="KeShe_DaChuang"/>
 		</Unit>
+		<Unit filename="G:/C_language/KeShe_DaChuang/student.c">
+			<Option target="KeShe_DaChuang"/>
+		</Unit>
+		<Unit filename="G:/C_language/KeShe_DaChuang/student.h">
+			<Option target="KeShe_DaChuang"/>
+		</Unit>
+		<Unit filename="G:/C_language/KeShe_DaChuang/total.c">
+			<Option target="KeShe_DaChuang"/>
+		</Unit>
+		<Unit filename="G:/C_language/KeShe_DaChuang/total.h">
+			<Option target="KeShe_DaChuang"/>
+		</Unit>
 		<Unit filename="G:/C_language/KeShe_DaChuang/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

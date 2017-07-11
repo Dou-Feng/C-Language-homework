@@ -230,6 +230,60 @@ schedule.c.s:
 	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/schedule.c.s
 .PHONY : schedule.c.s
 
+student.obj: student.c.obj
+
+.PHONY : student.obj
+
+# target to build an object file
+student.c.obj:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/student.c.obj
+.PHONY : student.c.obj
+
+student.i: student.c.i
+
+.PHONY : student.i
+
+# target to preprocess a source file
+student.c.i:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/student.c.i
+.PHONY : student.c.i
+
+student.s: student.c.s
+
+.PHONY : student.s
+
+# target to generate assembly for a file
+student.c.s:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/student.c.s
+.PHONY : student.c.s
+
+total.obj: total.c.obj
+
+.PHONY : total.obj
+
+# target to build an object file
+total.c.obj:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/total.c.obj
+.PHONY : total.c.obj
+
+total.i: total.c.i
+
+.PHONY : total.i
+
+# target to preprocess a source file
+total.c.i:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/total.c.i
+.PHONY : total.c.i
+
+total.s: total.c.s
+
+.PHONY : total.s
+
+# target to generate assembly for a file
+total.c.s:
+	$(MAKE) -f CMakeFiles\KeShe_DaChuang.dir\build.make CMakeFiles/KeShe_DaChuang.dir/total.c.s
+.PHONY : total.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -251,6 +305,12 @@ help:
 	@echo ... schedule.obj
 	@echo ... schedule.i
 	@echo ... schedule.s
+	@echo ... student.obj
+	@echo ... student.i
+	@echo ... student.s
+	@echo ... total.obj
+	@echo ... total.i
+	@echo ... total.s
 .PHONY : help
 
 

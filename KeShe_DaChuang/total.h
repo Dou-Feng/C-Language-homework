@@ -9,15 +9,11 @@
 
 #endif //KESHE_DACHUANG_TOTAL_H
 
-struct year {
-    char nianfen[5];
-    struct schedule *list[1000];
-    int length;
-    struct year *next;
-    struct year *prior;
+struct data {
+    char scheduleNo[10];
     int registeredProjectNum;
     int supportedProjectNum;
-    int fund;
+    float fund;
     float supportingRate;
     float passingRate;
     float excellentRate;
@@ -27,25 +23,35 @@ struct year {
 
 };
 
-/*Í³¼ÆÖ¸¶¨Ê±¼äÆÚÏŞÄÚ¸÷ÄêµÄÄê¶È¼Æ»®ÀïËùÉê±¨µÄÏîÄ¿Êı¡¢»ñµÃÖ§³ÖµÄÏîÄ¿Êı¡¢
-×Ê½ğ¡¢ Ö§³ÖÂÊ¡¢ ÑéÊÕÍ¨¹ıÂÊ¡¢ÓÅÁ¼ÂÊ¡¢ºÏ¸ñÂÊ¡¢Î´½áÌâÂÊ¡¢²ÎÓëÑ§ÉúÊıÁ¿µÈ£¬ÒÔ¼°
-×ÜµÄÉê±¨µÄÏîÄ¿Êı¡¢»ñµÃÖ§³ÖµÄÏîÄ¿Êı¡¢Ö§³ÖÂÊ¡¢ÑéÊÕÍ¨¹ıÂÊ¡¢ÓÅÁ¼ÂÊ¡¢ºÏ¸ñÂÊ¡¢
-Î´½áÌâÂÊµÈ¡£ ¿ÉÖ¸¶¨°´Äê¶ÈÉê±¨Êı¡¢»ñµÃÖ§³ÖµÄÏîÄ¿Êı¡¢ ×Ê½ğ×ÜÊı¡¢ Ö§³ÖÂÊ¡¢ÑéÊÕ
-Í¨¹ıÂÊµÈÅÅĞò¡£Ã»ÓĞÖ¸¶¨Ê±¼äÆÚÏŞÊ±ÎªÓĞ¼ÇÂ¼ÒÔÀ´µÄËùÓĞÇé¿ö¡£
-Í³¼ÆÖ¸¶¨Ê±¼äÆÚÏŞÄÚÖ¸¶¨ĞÕÃûµÄÑ§Éú²Î¼ÓµÄÏîÄ¿¡¢ÏîÄ¿ÊıÁ¿¡¢ÑéÊÕÍ¨¹ıÂÊ¡¢Ñé
-ÊÕÓÅÁ¼ÂÊ¡¢Î´½áÌâÂÊ¡£Ö§³ÖÄ£ºı²éÑ¯£¬¿É°´Ñ§ºÅ¡¢ĞÕÃû¡¢ÏîÄ¿ÊıÁ¿¡¢ÑéÊÕÍ¨¹ıÂÊµÈ
-ÅÅĞò¡£ Ã»ÓĞÖ¸¶¨Ê±¼äÆÚÏŞÊ±ÎªÓĞ¼ÇÂ¼ÒÔÀ´µÄËùÓĞÇé¿ö¡£
+/*
+ *
 
-Í³¼ÆÖ¸¶¨Ê±¼äÆÚÏŞÄÚÓĞÄ³ÔºÏµÑ§Éú²Î¼ÓµÄÏîÄ¿ÊıÁ¿£¬ ÑéÊÕÍ¨¹ıÂÊ¡¢ÑéÊÕÓÅÁ¼ÂÊ¡¢
-Î´½áÌâÂÊµÈ¡£Ö§³ÖÄ£ºı²éÑ¯¡£¿É°´ÏîÄ¿ÊıÁ¿£¬ÑéÊÕÍ¨¹ıÂÊ¡¢ÑéÊÕÓÅÁ¼ÂÊ¡¢Î´½áÌâÂÊ
-´Ó´óµ½Ğ¡ÅÅĞò¡£Ã»ÓĞÖ¸¶¨Ê±¼äÆÚÏŞÊ±ÎªÓĞ¼ÇÂ¼ÒÔÀ´µÄËùÓĞÇé¿ö¡£
-Í³¼ÆÖ¸¶¨Ê±¼äÄÚµÄ¸÷ÔºÏµ²ÎÓë´´ĞÂ»î¶¯µÄ±ÈÀı£¬±ÈÀı¼ÆËã¹«Ê½Îª£º
-ÅÅÃûµÚÒ»µÄÑ§ÉúÎª±¾ÔºÏµµÄÏîÄ¿Êı/ÏîÄ¿×ÜÊı¡£
-Ã»ÓĞÖ¸¶¨Ê±¼äÆÚÏŞÊ±ÎªÓĞ¼ÇÂ¼ÒÔÀ´¸÷Äê¶ÈÏîÄ¿ËùÓĞÇé¿ö¡£ °´±ÈÀı´óĞ¡´Ó´óµ½Ğ¡
-ÅÅĞò*/
 
-struct year *create();
+ç»Ÿè®¡æŒ‡å®šæ—¶é—´æœŸé™å†…æœ‰æŸé™¢ç³»å­¦ç”Ÿå‚åŠ çš„é¡¹ç›®æ•°é‡ï¼Œ éªŒæ”¶é€šè¿‡ç‡ã€éªŒæ”¶ä¼˜è‰¯ç‡ã€
+æœªç»“é¢˜ç‡ç­‰ã€‚æ”¯æŒæ¨¡ç³ŠæŸ¥è¯¢ã€‚å¯æŒ‰é¡¹ç›®æ•°é‡ï¼ŒéªŒæ”¶é€šè¿‡ç‡ã€éªŒæ”¶ä¼˜è‰¯ç‡ã€æœªç»“é¢˜ç‡
+ä»å¤§åˆ°å°æ’åºã€‚æ²¡æœ‰æŒ‡å®šæ—¶é—´æœŸé™æ—¶ä¸ºæœ‰è®°å½•ä»¥æ¥çš„æ‰€æœ‰æƒ…å†µã€‚
+ç»Ÿè®¡æŒ‡å®šæ—¶é—´å†…çš„å„é™¢ç³»å‚ä¸åˆ›æ–°æ´»åŠ¨çš„æ¯”ä¾‹ï¼Œæ¯”ä¾‹è®¡ç®—å…¬å¼ä¸ºï¼š
+æ’åç¬¬ä¸€çš„å­¦ç”Ÿä¸ºæœ¬é™¢ç³»çš„é¡¹ç›®æ•°/é¡¹ç›®æ€»æ•°ã€‚
+æ²¡æœ‰æŒ‡å®šæ—¶é—´æœŸé™æ—¶ä¸ºæœ‰è®°å½•ä»¥æ¥å„å¹´åº¦é¡¹ç›®æ‰€æœ‰æƒ…å†µã€‚ æŒ‰æ¯”ä¾‹å¤§å°ä»å¤§åˆ°å°
+æ’åº*/
 
-void addData(struct year *, struct schedule *, char *, char *, char *);
 
-void dataHandle(struct year *);
+void getInTimeSch(struct schedule **collection, struct schedule *, char *, char *);
+
+struct data *getSchData(struct schedule *);
+
+void sortData(struct data **collectionData, struct schedule **collectionSch);
+
+void sortDataBySupportingRate(struct data **collectionData, struct schedule **collectionSch);
+
+void sortDataByPassingRate(struct data **collectionData, struct schedule **collectionSch);
+
+void sortDataBySupportedNum(struct data **collectionData, struct schedule **collectionSch);
+
+void sortDataByFund(struct data **collectionData, struct schedule **collectionSch);
+
+void printData(struct data*);
+
+void fullDataCollection(struct data **collectionData, struct schedule **collectionSch);
+
+void printDataCollection(struct data **);

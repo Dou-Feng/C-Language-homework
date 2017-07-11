@@ -7,12 +7,18 @@
 
 /*创建计划链表*/
 struct schedule *createSchedule() {
+    /*头指针和尾指针*/
     struct schedule *head, *tail;
+    /*分配内存*/
     head = (struct schedule *) malloc(sizeof(struct schedule));
     tail = head;
+    /*下一个节点指向空*/
     tail->next = NULL;
+    /*前一个指针指为空*/
     tail->prior = NULL;
     return head;
+    /*完成创建一个链表的头部分，先决条件为 头节点有内存分配但是不存放数据，下一个指针指向空，
+     * 前一个指针指向空*/
 }
 
 
@@ -32,20 +38,27 @@ void addSchedule(struct schedule *head, FILE *data) {
     struct schedule *p = head;
     struct schedule *prior;
     struct project *prop;
+    /*遍历到链表尾部*/
     while (p->next) {
         p = p->next;
     }
+    /*分配内存*/
     p->next = (struct schedule *) malloc(sizeof(struct schedule));
+    /*使指向前一个指针指向p*/
     prior = p;
+    /*立刻进行p的位移*/
     p = p->next;
+    /*使指向前一个指针指向p的前一位*/
     p->prior = prior;
     /*为计划添加项目*/
     p->projectHead = createProject();
     /*next节点为NUll*/
     p->next = NULL;
+    /*找到project的存放数据的头节点*/
     prop = p->projectHead->next;
     /*方式选择*/
     int way = 0;
+    /*初始化*/
     p->projectNum = 0;
     p->realSupProNum = 0;
     p->finishProNum = 0;
@@ -66,8 +79,7 @@ void addSchedule(struct schedule *head, FILE *data) {
                            " * 投入资金\n"
                            " * 负责人\n"
                            " * 计划开始时间\n"
-                           " * 计划完结时间\n"
-                           " * 优秀项目数\n");
+                           " * 计划完结时间\n");
             fscanf(stdin, "%s%f%s%s%s", p->CSNo, &p->fund, p->leadMan,
                    p->startTime, p->finishTime);
             break;
@@ -77,6 +89,7 @@ void addSchedule(struct schedule *head, FILE *data) {
 
     sortSchedule(head);
     /*关联数据应该是从下一级链表中获得，而不是从键盘或者文件获得*/
+    /*用project的头指针开始进行遍历，逐渐的到相关数据*/
     while (prop) {
         p->projectNum++;
         if (prop->isSupported)
@@ -88,16 +101,20 @@ void addSchedule(struct schedule *head, FILE *data) {
     }
 }
 
-
+/*用于刷新计划表中的数据*/
+/*在每次更改项目信息之后进行刷新*/
 void refreshSchList(struct schedule *p) {
     struct project *proP = p->projectHead->next;
     p->projectNum = 0;
     p->realSupProNum = 0;
     p->finishProNum = 0;
+    /*遍历计划中的项目链表*/
     while (proP) {
         p->projectNum++;
+        /*当项目为支持*/
         if (proP->isSupported)
             p->realSupProNum++;
+        /*不是未能正常结题，完成项目数就可以加一*/
         if (!strstr(proP->judgement, "未能正常结题")) {
             p->finishProNum++;
         }

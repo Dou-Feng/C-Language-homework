@@ -5,6 +5,7 @@ CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../main.c
 CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../people.h
 CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../project.h
 CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../schedule.h
+CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../total.h
 
 CMakeFiles/KeShe_DaChuang.dir/people.c.obj: ../people.c
 CMakeFiles/KeShe_DaChuang.dir/people.c.obj: ../people.h
@@ -17,4 +18,13 @@ CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj: ../people.h
 CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj: ../project.h
 CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj: ../schedule.c
 CMakeFiles/KeShe_DaChuang.dir/schedule.c.obj: ../schedule.h
+
+CMakeFiles/KeShe_DaChuang.dir/student.c.obj: ../student.c
+CMakeFiles/KeShe_DaChuang.dir/student.c.obj: ../student.h
+
+CMakeFiles/KeShe_DaChuang.dir/total.c.obj: ../people.h
+CMakeFiles/KeShe_DaChuang.dir/total.c.obj: ../project.h
+CMakeFiles/KeShe_DaChuang.dir/total.c.obj: ../schedule.h
+CMakeFiles/KeShe_DaChuang.dir/total.c.obj: ../total.c
+CMakeFiles/KeShe_DaChuang.dir/total.c.obj: ../total.h
 
