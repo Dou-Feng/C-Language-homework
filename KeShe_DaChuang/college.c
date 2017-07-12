@@ -23,8 +23,11 @@ struct college *getCollege(struct schedule *head, char *collegeName, char *start
             struct people *people_p = project_p->peopleHead->next;
             while (people_p) {
                 /*如果学院和输入的学院相匹配*/
-                if (strstr(people_p->collegeAndMajor, collegeName))
+                if (strstr(people_p->collegeAndMajor, collegeName)) {
                     collection_project[index++] = project_p;
+                    /*只要其中有一个人的学院和输入学院相匹配那么 就可以跳出循环了*/
+                    break;
+                }
                 people_p = people_p->next;
             }
             project_p = project_p->next;
@@ -34,19 +37,21 @@ struct college *getCollege(struct schedule *head, char *collegeName, char *start
     collection_project[index] = NULL;
     /*进行college的创建*/
     struct college *college_p = (struct college *) malloc(sizeof(struct college));
+    memset(college_p, 0, sizeof(struct college));
     college_p->projectNum = index;
 
     /*重置index*/
     index = 0;
     while (collection_project[index]) {
-        if (strcmp(collection_project[index]->judgement, "未能正常通过")) {
+        if (strcmp(collection_project[index]->judgement, "未能正常结题")) {
             college_p->passingRate += 1;
         } else {
             college_p->unfinishedRate += 1;
         }
-        if (strcmp(collection_project[index]->judgement, "优")  == 0 && strcmp(collection_project[index]->judgement, "良")  == 0) {
+        if (strcmp(collection_project[index]->judgement, "优")  == 0 || strcmp(collection_project[index]->judgement, "良")  == 0) {
             college_p->excellentAndGoodRate += 1;
         }
+        index++;
     }
     /*优良率: 优良数 / 项目数*/
     college_p->excellentAndGoodRate /= college_p->projectNum;
@@ -59,15 +64,16 @@ struct college *getCollege(struct schedule *head, char *collegeName, char *start
 
 
 void getCollegeCollection(struct college **college_collection, char **name_collection, struct schedule *head) {
-    char time[2][10];
-    printf("请输入开始时间：");
+    char time[2][10] = {"20101010", "20180101"};
+    /*printf("请输入开始时间：");
     scanf("%s", time[0]);
     printf("请输入结束时间：");
-    scanf("%s", time[1]);
+    scanf("%s", time[1]);*/
     /*添加条目索引*/
     int index = 0;
     while (name_collection[index]) {
-        college_collection[index++] = getCollege(head, name_collection[index], time[0], time[1]);
+        college_collection[index] = getCollege(head, name_collection[index], time[0], time[1]);
+        index++;
     }
     college_collection[index] = NULL;
 }
@@ -88,28 +94,28 @@ void printCollegeCollection(struct college **collection) {
 
 void getCollegeName(char **collection_name, struct schedule *head) {
     struct schedule *schedule_p = head->next;
+    int index = 0;
     while (schedule_p) {
         struct project *project_p = schedule_p->projectHead->next;
         while (project_p) {
             struct people *people_p = project_p->peopleHead->next;
             while (people_p) {
-                int index = 0;
+                index = 0;
                 int isTheSameInCollection = 0;
                 /*当collection不为空时*/
                 while (collection_name[index]) {
-                    /*如果当前人员的名字和容器中所有人的名字都不一样时*/
-                    if (strcmp(collection_name[index++], people_p->name) == 0) {
+                    if (strstr(people_p->collegeAndMajor, collection_name[index++])) {
                         isTheSameInCollection = 1;
                         break;
                     }
                 }
                 if (!isTheSameInCollection) {
-                    /*一定是分配了内存的collection才行*/
                     char *college;
+                    /*分词方法有待改进*/
                     college = strtok(people_p->collegeAndMajor, "院");
                     strcat(college, "院");
-                    printf("%s", college);
-                    strcpy(collection_name[index], college);
+                    printf("%s\n", college);
+                    collection_name[index++] = college;
                 }
                 /*容器以NULL结尾*/
                 collection_name[index] = NULL;

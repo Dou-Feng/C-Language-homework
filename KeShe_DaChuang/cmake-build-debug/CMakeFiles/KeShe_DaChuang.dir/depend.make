@@ -8,10 +8,13 @@ CMakeFiles/KeShe_DaChuang.dir/college.c.obj: ../project.h
 CMakeFiles/KeShe_DaChuang.dir/college.c.obj: ../schedule.h
 CMakeFiles/KeShe_DaChuang.dir/college.c.obj: ../total.h
 
+CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../college.h
 CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../main.c
 CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../people.h
 CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../project.h
 CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../schedule.h
+CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../student.h
+CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../studentTable.h
 CMakeFiles/KeShe_DaChuang.dir/main.c.obj: ../total.h
 
 CMakeFiles/KeShe_DaChuang.dir/people.c.obj: ../people.c
