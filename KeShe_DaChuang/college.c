@@ -3,26 +3,26 @@
 //
 #include "college.h"
 
-/*ç»Ÿè®¡æŒ‡å®šæ—¶é—´æœŸé™å†…æœ‰æŸé™¢ç³»å­¦ç”Ÿå‚åŠ çš„é¡¹ç›®æ•°é‡ï¼Œ éªŒæ”¶é€šè¿‡çŽ‡ã€éªŒæ”¶ä¼˜è‰¯çŽ‡ã€
-æœªç»“é¢˜çŽ‡ç­‰ã€‚æ”¯æŒæ¨¡ç³ŠæŸ¥è¯¢ã€‚å¯æŒ‰é¡¹ç›®æ•°é‡ï¼ŒéªŒæ”¶é€šè¿‡çŽ‡ã€éªŒæ”¶ä¼˜è‰¯çŽ‡ã€æœªç»“é¢˜çŽ‡
-ä»Žå¤§åˆ°å°æŽ’åºã€‚æ²¡æœ‰æŒ‡å®šæ—¶é—´æœŸé™æ—¶ä¸ºæœ‰è®°å½•ä»¥æ¥çš„æ‰€æœ‰æƒ…å†µã€‚
-ç»Ÿè®¡æŒ‡å®šæ—¶é—´å†…çš„å„é™¢ç³»å‚ä¸Žåˆ›æ–°æ´»åŠ¨çš„æ¯”ä¾‹ï¼Œæ¯”ä¾‹è®¡ç®—å…¬å¼ä¸ºï¼š
-æŽ’åç¬¬ä¸€çš„å­¦ç”Ÿä¸ºæœ¬é™¢ç³»çš„é¡¹ç›®æ•°/é¡¹ç›®æ€»æ•°ã€‚
-æ²¡æœ‰æŒ‡å®šæ—¶é—´æœŸé™æ—¶ä¸ºæœ‰è®°å½•ä»¥æ¥å„å¹´åº¦é¡¹ç›®æ‰€æœ‰æƒ…å†µã€‚ æŒ‰æ¯”ä¾‹å¤§å°ä»Žå¤§åˆ°å°
-æŽ’åº*/
+/*Í³¼ÆÖ¸¶¨Ê±¼äÆÚÏÞÄÚÓÐÄ³ÔºÏµÑ§Éú²Î¼ÓµÄÏîÄ¿ÊýÁ¿£¬ ÑéÊÕÍ¨¹ýÂÊ¡¢ÑéÊÕÓÅÁ¼ÂÊ¡¢
+Î´½áÌâÂÊµÈ¡£Ö§³ÖÄ£ºý²éÑ¯¡£¿É°´ÏîÄ¿ÊýÁ¿£¬ÑéÊÕÍ¨¹ýÂÊ¡¢ÑéÊÕÓÅÁ¼ÂÊ¡¢Î´½áÌâÂÊ
+´Ó´óµ½Ð¡ÅÅÐò¡£Ã»ÓÐÖ¸¶¨Ê±¼äÆÚÏÞÊ±ÎªÓÐ¼ÇÂ¼ÒÔÀ´µÄËùÓÐÇé¿ö¡£
+Í³¼ÆÖ¸¶¨Ê±¼äÄÚµÄ¸÷ÔºÏµ²ÎÓë´´ÐÂ»î¶¯µÄ±ÈÀý£¬±ÈÀý¼ÆËã¹«Ê½Îª£º
+ÅÅÃûµÚÒ»µÄÑ§ÉúÎª±¾ÔºÏµµÄÏîÄ¿Êý/ÏîÄ¿×ÜÊý¡£
+Ã»ÓÐÖ¸¶¨Ê±¼äÆÚÏÞÊ±ÎªÓÐ¼ÇÂ¼ÒÔÀ´¸÷Äê¶ÈÏîÄ¿ËùÓÐÇé¿ö¡£ °´±ÈÀý´óÐ¡´Ó´óµ½Ð¡
+ÅÅÐò*/
 struct college *getCollege(struct schedule *head, char *collegeName, char *startTime, char *finishTime) {
-    /*å…ˆæ‰¾åˆ°ä¸ŽcollegeNameç›¸å…³çš„project*/
+    /*ÏÈÕÒµ½ÓëcollegeNameÏà¹ØµÄproject*/
     struct project *collection_project[1000];
     int index = 0;
     struct schedule *schedule_p = head->next;
     while (schedule_p) {
         struct project *project_p = schedule_p->projectHead->next;
-        /*å½“å‰projectä¸ä¸ºç©ºï¼Œå¹¶ä¸”åœ¨æ—¶é—´èŒƒå›´å†…*/
+        /*µ±Ç°project²»Îª¿Õ£¬²¢ÇÒÔÚÊ±¼ä·¶Î§ÄÚ*/
         while (project_p && strcmp(project_p->startTime, startTime) >= 0 &&
                             strcmp(project_p->finishTime, finishTime) <= 0) {
             struct people *people_p = project_p->peopleHead->next;
             while (people_p) {
-                /*å¦‚æžœå­¦é™¢å’Œè¾“å…¥çš„å­¦é™¢ç›¸åŒ¹é…*/
+                /*Èç¹ûÑ§ÔººÍÊäÈëµÄÑ§ÔºÏàÆ¥Åä*/
                 if (strstr(people_p->collegeAndMajor, collegeName))
                     collection_project[index++] = project_p;
                 people_p = people_p->next;
@@ -32,25 +32,25 @@ struct college *getCollege(struct schedule *head, char *collegeName, char *start
         schedule_p = schedule_p->next;
     }
     collection_project[index] = NULL;
-    /*è¿›è¡Œcollegeçš„åˆ›å»º*/
+    /*½øÐÐcollegeµÄ´´½¨*/
     struct college *college_p = (struct college *) malloc(sizeof(struct college));
     college_p->projectNum = index;
 
-    /*é‡ç½®index*/
+    /*ÖØÖÃindex*/
     index = 0;
     while (collection_project[index]) {
-        if (strcmp(collection_project[index]->judgement, "æœªèƒ½æ­£å¸¸é€šè¿‡")) {
+        if (strcmp(collection_project[index]->judgement, "Î´ÄÜÕý³£Í¨¹ý")) {
             college_p->passingRate += 1;
         } else {
             college_p->unfinishedRate += 1;
         }
-        if (strcmp(collection_project[index]->judgement, "ä¼˜")  == 0 && strcmp(collection_project[index]->judgement, "è‰¯")  == 0) {
+        if (strcmp(collection_project[index]->judgement, "ÓÅ")  == 0 && strcmp(collection_project[index]->judgement, "Á¼")  == 0) {
             college_p->excellentAndGoodRate += 1;
         }
     }
-    /*ä¼˜è‰¯çŽ‡: ä¼˜è‰¯æ•° / é¡¹ç›®æ•°*/
+    /*ÓÅÁ¼ÂÊ: ÓÅÁ¼Êý / ÏîÄ¿Êý*/
     college_p->excellentAndGoodRate /= college_p->projectNum;
-    /*é€šè¿‡çŽ‡ï¼šé€šè¿‡æ•° / é¡¹ç›®æ•°*/
+    /*Í¨¹ýÂÊ£ºÍ¨¹ýÊý / ÏîÄ¿Êý*/
     college_p->passingRate /= college_p->projectNum;
     strcpy(college_p->collegeName, collegeName);
     college_p->unfinishedRate /= college_p->projectNum;
@@ -60,11 +60,11 @@ struct college *getCollege(struct schedule *head, char *collegeName, char *start
 
 void getCollegeCollection(struct college **college_collection, char **name_collection, struct schedule *head) {
     char time[2][10];
-    printf("è¯·è¾“å…¥å¼€å§‹æ—¶é—´ï¼š");
+    printf("ÇëÊäÈë¿ªÊ¼Ê±¼ä£º");
     scanf("%s", time[0]);
-    printf("è¯·è¾“å…¥ç»“æŸæ—¶é—´ï¼š");
+    printf("ÇëÊäÈë½áÊøÊ±¼ä£º");
     scanf("%s", time[1]);
-    /*æ·»åŠ æ¡ç›®ç´¢å¼•*/
+    /*Ìí¼ÓÌõÄ¿Ë÷Òý*/
     int index = 0;
     while (name_collection[index]) {
         college_collection[index++] = getCollege(head, name_collection[index], time[0], time[1]);
@@ -78,7 +78,7 @@ void printCollege(struct college *p) {
 }
 
 void printCollegeCollection(struct college **collection) {
-    char title[5][12] = {"å­¦é™¢åç§°", "å‚ä¸Žé¡¹ç›®æ•°é‡", "éªŒæ”¶é€šè¿‡çŽ‡", "éªŒæ”¶ä¼˜è‰¯çŽ‡", "æœªç»“é¢˜çŽ‡"};
+    char title[5][20] = {"Ñ§ÔºÃû³Æ", "²ÎÓëÏîÄ¿ÊýÁ¿", "ÑéÊÕÍ¨¹ýÂÊ", "ÑéÊÕÓÅÁ¼ÂÊ", "Î´½áÌâÂÊ"};
     printf("%-20s%-14s%-12s%-12s%-10s\n", title[0], title[1], title[2], title[3], title[4]);
     int index = 0;
     while (collection[index]) {
@@ -95,31 +95,31 @@ void getCollegeName(char **collection_name, struct schedule *head) {
             while (people_p) {
                 int index = 0;
                 int isTheSameInCollection = 0;
-                /*å½“collectionä¸ä¸ºç©ºæ—¶*/
+                /*µ±collection²»Îª¿ÕÊ±*/
                 while (collection_name[index]) {
-                    /*å¦‚æžœå½“å‰äººå‘˜çš„åå­—å’Œå®¹å™¨ä¸­æ‰€æœ‰äººçš„åå­—éƒ½ä¸ä¸€æ ·æ—¶*/
+                    /*Èç¹ûµ±Ç°ÈËÔ±µÄÃû×ÖºÍÈÝÆ÷ÖÐËùÓÐÈËµÄÃû×Ö¶¼²»Ò»ÑùÊ±*/
                     if (strcmp(collection_name[index++], people_p->name) == 0) {
                         isTheSameInCollection = 1;
                         break;
                     }
                 }
                 if (!isTheSameInCollection) {
-                    /*ä¸€å®šæ˜¯åˆ†é…äº†å†…å­˜çš„collectionæ‰è¡Œ*/
+                    /*Ò»¶¨ÊÇ·ÖÅäÁËÄÚ´æµÄcollection²ÅÐÐ*/
                     char *college;
-                    college = strtok(people_p->collegeAndMajor, "é™¢");
-                    strcat(college, "é™¢");
+                    college = strtok(people_p->collegeAndMajor, "Ôº");
+                    strcat(college, "Ôº");
                     printf("%s", college);
                     strcpy(collection_name[index], college);
                 }
-                /*å®¹å™¨ä»¥NULLç»“å°¾*/
+                /*ÈÝÆ÷ÒÔNULL½áÎ²*/
                 collection_name[index] = NULL;
-                /*æŒ‡é’ˆç§»åŠ¨*/
+                /*Ö¸ÕëÒÆ¶¯*/
                 people_p = people_p->next;
             }
-            /*æŒ‡é’ˆç§»åŠ¨*/
+            /*Ö¸ÕëÒÆ¶¯*/
             project_p = project_p->next;
         }
-        /*æŒ‡é’ˆç§»åŠ¨*/
+        /*Ö¸ÕëÒÆ¶¯*/
         schedule_p = schedule_p->next;
     }
 }

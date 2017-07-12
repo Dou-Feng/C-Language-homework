@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "total.h"
+#include "studentTable.h"
+
 
 int main() {
     FILE *scheduleData = fopen("H:/data/data_keshe_schedule.txt", "r");
@@ -19,6 +20,18 @@ int main() {
     struct schedule *collectionSch_data[100];
     struct project *collectionPro[100];
     struct data *collection_data[100];
+    char *collection_name[200];
+    memset(collection_name, 0, sizeof(char *) * 200);
+    struct student *collection_student[100];
+    addSchedule(head, scheduleData);
+    addSchedule(head, scheduleData);
+    addProject(head->next->projectHead, projectData);
+    addProject(head->next->projectHead, projectData);
+    addPeople(head->next->projectHead->next->peopleHead, peopleData);
+    addPeople(head->next->projectHead->next->peopleHead, peopleData);
+    refreshSchList(head->next);
+    refreshProList(head->next->projectHead->next);
+    printSchTable(head);
     while (method) {
         printf("输入1进行添加操作，输入2进行删除操作，输入3进行修改操作，输入4进行查询操作，输入5查看计划的项目详情，输入0退出系统\n");
         scanf("%d", &method);
@@ -107,9 +120,9 @@ int main() {
         }
         printf("\n");
         printSchTable(head);
-        getInTimeSch(collectionSch_data, head, "20100101", "20180101");
-        fullDataCollection(collection_data, collectionSch_data);
-        printDataCollection(collection_data);
+        getAllName(collection_name, head);
+        getStudentCollection(collection_student, collection_name, head);
+        printStudentCollection(collection_student);
     }
     fclose(projectData);
     fclose(scheduleData);

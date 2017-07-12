@@ -9,16 +9,7 @@
 #define KESHE_DACHUANG_SCHEDULE_H
 
 #endif //KESHE_DACHUANG_SCHEDULE_H
-/*双向链表*/
-/* 年度编号
- * 投入资金
- * 负责人
- * 申报项目数   (关联项目数量）
- * 实际支持项目 （关联isSupported)
- * 结题项目数  (关联结题评价）
- * 计划开始时间
- * 计划完结时间
- * 项目基本信息*/
+
 struct schedule {
     char CSNo[10];
     float fund;
@@ -33,54 +24,53 @@ struct schedule {
     struct schedule *prior;
 };
 
-/*创建链表*/
+/*锟斤拷锟斤拷锟斤拷锟斤拷*/
 struct schedule* createSchedule();
 
 
-/*在链表尾添加一组数据*/
+
 void addSchedule(struct schedule *, FILE *data);
 
-/*通过年度编号查找出所有的与关键词有关的计划表*/
+
 void findSchCollectionByCSNo(struct schedule **, struct schedule *head, char *keyword);
 
-/*查找操作*/
+
 void findSchedule(struct schedule *);
 
-/*通过经费查找，返回值为查找到的节点的指针*/
+
 void findSchCollectionByFundMax(struct schedule **collection, struct schedule *head,float max,float min);
 
-/*通过实际支持项目查找出所有的计划表*/
+
 void findSchCollectionBySupMax(struct schedule **collection, struct schedule *head, int max,int min);
 
-/*组合查询*/
+
 void findSchCollectionCombine(struct schedule **collection, struct schedule *head, char *, float, float,
                               int ,int);
 
-/*删除一个节点*/
+
 void deleteSchedule(struct schedule *);
 
 
-/*修改操作*/
+
 void modifySchedule(struct schedule *);
 
-/*修改具体的节点的内容*/
+
 void modifyDetailSchedule(struct schedule *);
 
 
-/*打印单个节点的具体内容*/
+
 void printSchedule(struct schedule *);
 
-/*打印计划表格*/
+
 void printSchTable(struct schedule *);
 
-/*打印容器里的计划表*/
+
 void printSchCollection(struct schedule **);
 
 
-/*用于改变链表的指针指向，到达交换元素的作用*/
 void exchangeSchedule(struct schedule *head, int chg1, int chg2);
 
-/*按照字典序把年度编号进行排序*/
+
 void sortSchedule(struct schedule *head);
 
 void refreshSchList(struct schedule *p);

@@ -37,11 +37,11 @@ void addPeople(struct people *head, FILE *data) {
     p = p->next;
     p->prior = prior;
     /*方式选择*/
-    int way = 0;
-    printf("请选择输入数据的方式\n"
+    int way = 1;  //debug
+    /*printf("请选择输入数据的方式\n"
                    "1.从文件输入\n"
                    "2.从键盘输入\n");
-    scanf("%d", &way);
+    scanf("%d", &way);*/
     switch (way) {
         case 1:
             /*导入方式一，文件导入*/
@@ -243,8 +243,9 @@ void deletePeople(struct people *head) {
             temp_next = collection[i]->next;
             temp_prior->next = temp_next;
             /*防止越界访问*/
-            if (temp_next)
-                temp_next->prior = temp_prior;
+			if (temp_next) {
+				temp_next->prior = temp_prior;
+			}
             free(collection[i]);
         }
     }

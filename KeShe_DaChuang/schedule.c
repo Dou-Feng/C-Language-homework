@@ -2,7 +2,7 @@
 // Created by Famine on 2017/7/2.
 //
 #include <stdio.h>
-#include <mem.h>
+#include <string.h>
 #include "schedule.h"
 
 /*创建计划链表*/
@@ -57,15 +57,15 @@ void addSchedule(struct schedule *head, FILE *data) {
     /*找到project的存放数据的头节点*/
     prop = p->projectHead->next;
     /*方式选择*/
-    int way = 0;
+    int way = 1; //debug
     /*初始化*/
     p->projectNum = 0;
     p->realSupProNum = 0;
     p->finishProNum = 0;
-    printf("请选择输入数据的方式\n"
+    /*printf("请选择输入数据的方式\n"
                    "1.从文件输入\n"
                    "2.从键盘输入\n");
-    scanf("%d", &way);
+    scanf("%d", &way);*/
     switch (way) {
         case 1:
             /*导入方式一，文件导入*/

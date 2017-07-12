@@ -40,12 +40,12 @@ void addProject(struct project *head, FILE *data) {
     p = p->next;
     p->prior = prior;
     /*方式选择*/
-    int way = 0;
+    int way = 1;  //debug
     p->member = 0;
-    printf("请选择输入数据的方式\n"
+    /*printf("请选择输入数据的方式\n"
                    "1.从文件输入\n"
-                   "2.从键盘输入\n");
-    scanf("%d", &way);
+                   "2.从键盘输入\n");*/
+    /*scanf("%d", &way);*/
     switch (way) {
         case 1:
             /*导入方式一，文件导入*/
