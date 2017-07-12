@@ -58,7 +58,7 @@ struct student *getStudentData(char *name, char *SNo, struct project **p) { /* п
         } else {
             stu->unfinishedRate += 1;
         }
-        if (strcmp(p[index]->judgement, "се")  == 0 && strcmp(p[index]->judgement, "а╪")  == 0) {
+        if (strcmp(p[index]->judgement, "се")  == 0 || strcmp(p[index]->judgement, "а╪")  == 0) {
             stu->excellentAndGoodRate += 1;
         }
     }
