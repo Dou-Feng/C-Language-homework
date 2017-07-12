@@ -8,7 +8,7 @@ int main() {
     FILE *peopleData = fopen("H:/data/data_keshe_people.txt", "r");
     struct schedule *head = createSchedule();
     printf("                       ------大创项目记录系统------\n\n");
-    printSchTable(head);
+
     int method = -1;
     int method2 = -1;
     int method3 = -1;
@@ -17,12 +17,14 @@ int main() {
     struct project *targetPro;
     struct people *targetPeo;
     struct schedule *collectionSch[100];
-    struct schedule *collectionSch_data[100];
     struct project *collectionPro[100];
     struct data *collection_data[100];
     struct college *collection_college[100];
+    struct schedule *collection_data_sch[100];
     char *collection_name[200];
     memset(collection_name, 0, sizeof(char *) * 200);
+    char *collection_college_name[200];
+    memset(collection_college_name, 0, sizeof(char *) * 200);
     struct student *collection_student[100];
     while (method) {
         printf("输入1进行添加操作，输入2进行删除操作，输入3进行修改操作，输入4进行查询操作，输入5查看计划的项目详情，输入0退出系统\n");
@@ -110,11 +112,24 @@ int main() {
             default:
                 break;
         }
+
         printf("\n");
-        printSchTable(head);
-        getCollegeName(collection_name, head);
-        getCollegeCollection(collection_college, collection_name, head);
+        getInTimeSch(collection_data_sch, head, "20101010", "20181010");
+        fullDataCollection(collection_data, collection_data_sch);
+
+        getAllName(collection_name, head);
+        getStudentCollection(collection_student, collection_name, head);
+
+        getCollegeName(collection_college_name, head);
+        getCollegeCollection(collection_college, collection_college_name, head);
+
+        printf("查看报表：\n");
+        printDataCollection(collection_data);
+        printStudentCollection(collection_student);
+        printf("\n");
         printCollegeCollection(collection_college);
+        printf("\n");
+
     }
     fclose(projectData);
     fclose(scheduleData);
